@@ -5,7 +5,7 @@ import VisualGraphLogoHorizontal from '../../../public/visual-graph-horizontal.p
 import ArrowDesing from '../../../public/arrow-visual-graph.png'
 
 const link =[
-	  { name: 'Home', url: '/' },
+	{ name: 'Home', url: '/' },
     { name: 'About', url: '/about' },
     { name: 'Contact', url: '/contact' },
     { name: 'Services', url: '/services' },

@@ -9,16 +9,16 @@ const footer = () => {
 		<footer className={Styles.footer}>
 			<div className={Styles.footerContainer}>
 				<div className={Styles.footerImageContainer}>
-					<Image src={VisualGraphLogoFooter} alt='logo Visual Graph Footer' />
+					<Image src={VisualGraphLogoFooter} alt='logo Visual Graph Footer' className={Styles.footerImage} />
 				</div>
 				<div className={Styles.footerSocialMedia}>
-					<Link href={'https://www.instagram.com/visualgraphagency/'}>
+					<Link target='_blank' href={'https://www.instagram.com/visualgraphagency/'}>
 						<FaInstagram size={32} color='#000000'/>
 					</Link>
-					<Link href={'https://www.facebook.com/profile.php?id=61574412012253'}>
+					<Link target='_blank' href={'https://www.facebook.com/profile.php?id=61574412012253'}>
 						<FaFacebookF size={32} color='#000000'/>
 					</Link>
-					<Link href={'/'}>
+					<Link target='_blank' href={'/'}>
 						<FaLinkedinIn size={32} color='#000000'/>
 					</Link>
 				</div>
