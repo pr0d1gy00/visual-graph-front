@@ -1,0 +1,28 @@
+.input{
+	width: 100%;
+	border: none;
+	height: 6rem;
+	border-radius: 1rem;
+	margin-top: 1rem ;
+	margin-bottom: 1rem;
+	padding: 1rem;
+}
+.input[type='checkbox']{
+	width: 20%;
+	height: 4rem;
+	margin: 1rem 0 1rem 0;
+	display: inline-block;
+  vertical-align: middle;
+}
+.input::placeholder {
+	color: #8888aa;
+  font-size: 1.7rem;
+  font-style: italic;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+  transition: color 0.3s;
+}
+.input:focus::placeholder {
+	color: #b3b3ff;
+	opacity: 0.6;
+  }

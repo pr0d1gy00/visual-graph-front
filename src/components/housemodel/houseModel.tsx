@@ -46,7 +46,7 @@ export default function HouseModel() {
 			0.1,
 			1000
 		);
-camera.position.set(3, 2, 1); // X=7 (lateral), Y=1.5 (altura), Z=0		scene.add(camera);
+		camera.position.set(3, 2, 1); // X=7 (lateral), Y=1.5 (altura), Z=0		scene.add(camera);
 
 		// CONTROLS
 		const controls = new OrbitControls(

@@ -9,11 +9,19 @@ html {
 }
 
 body {
-	font-size: 1.6rem;
-	font-family: 'Poppins', sans-serif;
-	background-color: #ffffff;
-	max-width: 100%;
-	height: 100%;
+	font-size: 1.6rem;              /* Tamaño base legible */
+  background-color: #f9f9fb;      /* Fondo suave, no blanco puro */
+  color: #222;                    /* Texto oscuro para buena legibilidad */
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;               /* Mejor lectura */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 p,
