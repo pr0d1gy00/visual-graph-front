@@ -3,4 +3,36 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 10%;
+}
+
+
+.createSection{
+  width: 90%;
+  display: flex;
+  justify-content: end;
+}
+
+.createSectionButton{
+  width: 20rem;
+  height: 5rem;
+  background-color: #ffcc00;
+  color: #010100;
+  font-size: 2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 1rem;
+}
+.createSectionButton:hover{
+  cursor: pointer;
+  background-color: #ffffff;
+  color: #ffcc00;
+}
+
+@media (width >= 900px) {
+  .createSectionButton{
+    width: 60%;
+
+  }
+
 }

@@ -13,13 +13,13 @@ const footer = () => {
 				</div>
 				<div className={Styles.footerSocialMedia}>
 					<Link target='_blank' href={'https://www.instagram.com/visualgraphagency/'}>
-						<FaInstagram size={32} color='#000000'/>
+						<FaInstagram size={32} color='#ffcc00'/>
 					</Link>
 					<Link target='_blank' href={'https://www.facebook.com/profile.php?id=61574412012253'}>
-						<FaFacebookF size={32} color='#000000'/>
+						<FaFacebookF size={32} color='#ffcc00'/>
 					</Link>
 					<Link target='_blank' href={'/'}>
-						<FaLinkedinIn size={32} color='#000000'/>
+						<FaLinkedinIn size={32} color='#ffcc00'/>
 					</Link>
 				</div>
 				<div className={Styles.footerTextContainer}>

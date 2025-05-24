@@ -10,8 +10,8 @@ html {
 
 body {
 	font-size: 1.6rem;              /* Tamaño base legible */
-  background-color: #f9f9fb;      /* Fondo suave, no blanco puro */
-  color: #222;                    /* Texto oscuro para buena legibilidad */
+  background-color: #f8f8f8;      /* Fondo suave, no blanco puro */
+  color: #010100;                    /* Texto oscuro para buena legibilidad */
   width: 100%;
   margin: 0;
   padding: 0;
@@ -23,7 +23,11 @@ body {
   display: flex;
   flex-direction: column;
 }
-
+.swal-custom-height {
+  min-height: 300px; /* Ajusta el valor según lo que necesites */
+  max-height: 500px;
+  font-size: 2rem;
+}
 p,
 h1,
 h2,
@@ -35,4 +39,38 @@ ul,
 ol {
 	padding: 0;
 	margin: 0;
+}
+/* Cambia el fondo y el borde de cada item */
+
+.swipeable-list-item__trailing-actions{
+  background: #ff5448 !important;
+  border-radius: 1rem !important;
+  margin-bottom: 1rem !important;
+  box-shadow: 0 2px 8px #0001 !important;
+  transition: box-shadow 0.2s;
+  color: #fff !important;
+  font-size: 3rem !important;
+  font-weight: 700 !important;
+  border: none !important;
+  text-align: center !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 1rem !important;
+}
+
+/* Cambia el color del contenido al hacer swipe */
+.swipeable-list-item__content {
+  color: #333;
+  font-size: 1.3rem;
+
+}
+@media (width >= 900px) {
+  .swipeable-list{
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 1rem !important;
+  }
+  .swipeable-list-item{
+    border-radius: 2rem !important;
+  }
 }

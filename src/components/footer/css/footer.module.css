@@ -1,12 +1,13 @@
 .footer{
 	width: 100%;
 	height: auto;
-	background-color: #ffcc01;
+	background-color: #010100;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	padding: 2rem 0;
 	margin-top: auto;
+	border-top: 1px solid #e3e3e3;
 }
 .footerImageContainer{
 	width: 100%;
@@ -41,6 +42,7 @@
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
+	color:#ffcc00;
 }
 
 @media (width >=900px) {

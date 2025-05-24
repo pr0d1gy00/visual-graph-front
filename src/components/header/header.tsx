@@ -6,8 +6,8 @@ import ArrowDesing from '../../../public/arrow-visual-graph.png'
 
 const link =[
 	{ name: 'Home', url: '/' },
-    { name: 'About', url: '/CreateSection' },
-    { name: 'Contact', url: '/contact' },
+    { name: 'Sección', url: '/Section' },
+    { name: 'Contenido', url: '/Content' },
     { name: 'Services', url: '/services' },
 
 ]
@@ -21,10 +21,11 @@ const header = () => {
 			<div className={Styles.headerLinks}>
 				{link.map((link,index)=>{
 					return(
-						<div key={index} className={Styles.headerLinkContainer}>
+						<Link href={link.url} key={index} className={Styles.headerLinkContainer}>
+							{link.name}
 							<Image src={ArrowDesing} alt="Arrow" className={Styles.arrow}/>
-							<Link key={index} href={link.url} className={Styles.headerLink}>{link.name}</Link>
-						</div>
+
+						</Link>
 
 					)
 				})}

@@ -1,4 +1,4 @@
-.formContainer{
+.formContentContainer {
 	margin-top: 10%;
 	width: 90%;
 	background-color: #ffffff;
@@ -8,23 +8,21 @@
 	margin-bottom: 4rem;
 	border: 1px solid #e3e3e3;
 }
-.form{
+.formContentForm{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
-
-.textForm{
+.textContent{
 	text-align: center;
 	color: #ffffff;
 	font-size: 4rem;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-
 	background-color: #ffcc00;
 	border-radius: 1rem
 }
-.containerSelect{
+.formContainerSelect{
 	display: flex;
 	flex-direction: column;
 }
@@ -38,20 +36,6 @@
 	border-radius: 2rem;
 	padding: 1rem;
 }
-option:hover{
-	background-color: #ffcc00;
-	color:#ffffff;
-}
-.containerInput{
-	display: flex;
-	flex-direction: column;
-}
-.checkboxInput {
-	width: auto;
-	height: 2rem;
-	margin-top: 0.5rem;
-  }
-
 .buttonSend{
 	width: 100%;
 	margin: 0 auto;
@@ -62,10 +46,10 @@ option:hover{
 
 }
 @media (width >= 900px) {
-	.formContainer{
+	.formContentContainer{
 		width: 40%;
 	}
-	.formInputsContainer{
+	.formContentInputContainer{
 		display: grid;
 		grid-template-columns: repeat(2,1fr);
 		gap: 1rem;
