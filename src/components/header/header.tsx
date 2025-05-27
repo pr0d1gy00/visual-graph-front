@@ -8,7 +8,8 @@ const link =[
 	{ name: 'Home', url: '/' },
     { name: 'Sección', url: '/Section' },
     { name: 'Contenido', url: '/Content' },
-    { name: 'Services', url: '/services' },
+    { name: 'Imagenes', url: '/Media' },
+	{ name: "Crea", url:"/Create"}
 
 ]
 const header = () => {

@@ -13,6 +13,8 @@
 	z-index: 1;
 	position: relative;
 	color: #010100;
+	font-family: 'Nexa', sans-serif;
+	font-weight: 700;
 }
 
 .headerImage {
@@ -60,7 +62,7 @@
 }
 .headerLinkContainer:hover {
 	color: #ffffff;
-	background-color: #ffcc00;
+	background-color: #ffcc01;
 }
 
 /* Para tablets (pantallas medianas) */

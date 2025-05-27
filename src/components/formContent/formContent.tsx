@@ -82,85 +82,96 @@ export default function FormContent() {
 		order: 0,
 		sectionId: "",
 	});
-	const handleChange = (e:React.ChangeEvent<HTMLInputElement | HTMLSelectElement>)=>{
+	const handleChange = (
+		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+	) => {
 		e.preventDefault();
-		const {name,value}=e.target;
+		const { name, value } = e.target;
 
 		setInputs({
 			...inputs,
-			[name]:value
-		})
-
-	}
-	const handleSubmit =  async (e:React.FormEvent<HTMLFormElement>)=>{
+			[name]: value,
+		});
+	};
+	const handleSubmit = async (
+		e: React.FormEvent<HTMLFormElement>
+	) => {
 		e.preventDefault();
 		const dataSend = {
 			...inputs,
 			order: parseInt(inputs.order.toString()),
 			sectionId: parseInt(inputs.sectionId.toString()),
 			isActive: true,
-
-		}
+		};
 		const response = await CreateContent(dataSend);
-		if(response instanceof Response){
+		if (response instanceof Response) {
 			const result = await response.json();
-			if(response.status === 201 || response.status === 200){
+			if (response.status === 201 || response.status === 200) {
 				Swal.fire({
 					icon: "success",
 					title: "Contenido creado",
-					text: JSON.stringify(`${result.message}. Ve a Media para agregarle imagenes!`),
+					text: JSON.stringify(
+						`${result.message}. Ve a Media para agregarle imagenes!`
+					),
 					confirmButtonText: "Aceptar",
 					confirmButtonColor: "#ffcc00",
 					width: 400,
-					customClass:{
-						popup: 'swal-custom-height'
+					customClass: {
+						popup: "swal-custom-height",
 					},
 					timerProgressBar: true,
-				})
-			}else{
+				});
+			} else {
 				Swal.fire({
 					icon: "error",
 					title: "Error",
-					text:typeof result.message === "string" ? result.message : JSON.stringify(result.message),
+					text:
+						typeof result.message === "string"
+							? result.message
+							: JSON.stringify(result.message),
 					confirmButtonText: "Aceptar",
 					confirmButtonColor: "#ffcc00",
 					width: 400,
-					customClass:{
-						popup: 'swal-custom-height'
+					customClass: {
+						popup: "swal-custom-height",
 					},
 					timerProgressBar: true,
-				})
+				});
 			}
 		}
-	}
-	console.log(inputs)
+	};
 	useEffect(() => {
 		GetSections().then((res) => {
 			if (Array.isArray(res)) {
 				setSections(res);
 			} else {
-				console.log(res.error)
+				console.log(res.error);
 				Swal.fire({
 					icon: "error",
 					title: "Error",
 					text: JSON.stringify(res.message),
 					confirmButtonText: "Aceptar",
-					confirmButtonColor: "#3085d6",
+					confirmButtonColor: "#ffcc00",
 					width: 400,
-					customClass:{
-						popup: 'swal-custom-height'
+					customClass: {
+						popup: "swal-custom-height",
 					},
 					timer: 5000,
 					timerProgressBar: true,
-				})
-		}})
+				});
+			}
+		});
 	}, []);
 	return (
 		<div className={Styles.formContentContainer}>
 			<h2 className={Styles.textContent}>
 				Registrar Contenido
 			</h2>
-			<form action="POST" onSubmit={handleSubmit} className={Styles.formContentForm}>
+			<form
+				action="POST"
+				onSubmit={handleSubmit}
+				className={Styles.formContentForm}
+			>
 				<div className={Styles.formContentInputContainer}>
 					{inputsContent.map((input, index) => {
 						if (input.type === "select") {
@@ -181,8 +192,11 @@ export default function FormContent() {
 										id={input.id}
 										className={Styles.select}
 										onChange={handleChange}
-										{...(input.name === "sectionId"
-											? { value: inputs.sectionId }
+										{...(input.name ===
+										"sectionId"
+											? {
+													value: inputs.sectionId,
+											  }
 											: { value: inputs.type })}
 									>
 										<option value="">
@@ -211,7 +225,7 @@ export default function FormContent() {
 															</option>
 														);
 													}
-										)
+											  )
 											: sections.map(
 													(
 														section,
@@ -232,7 +246,7 @@ export default function FormContent() {
 															</option>
 														);
 													}
-											)}
+											  )}
 									</select>
 								</div>
 							);
@@ -254,7 +268,6 @@ export default function FormContent() {
 										id={input.id}
 										onChange={handleChange}
 										placeholder={input.label}
-
 									/>
 								</div>
 							);

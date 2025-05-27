@@ -1,16 +1,19 @@
 .textSection{
-  color:#ffcc00;
-  font-size: 5rem;
+  color:#ffcc01;
+  font-size: 4rem;
   text-align: center;
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
 }
 .sectionListContainer{
   width: 90%;
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
+  font-family: 'Nexa', sans-serif;
 }
 .sectionListContainer p{
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #010100;
   text-align: center;
   font-weight: 700;
@@ -56,7 +59,7 @@
 }
 
 .section h3{
-  font-size: 2.5rem;
+  font-size: 2rem;
 }
 
 @media (width >= 900px) {
@@ -65,9 +68,8 @@
   }
   .section{
     width: 100%;
-    padding: 2rem
   }
   .textSection{
-  font-size: 5rem;
+  font-size: 4rem;
 }
 }

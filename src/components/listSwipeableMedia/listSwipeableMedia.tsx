@@ -1,4 +1,6 @@
 "use client";
+import Styles from './css/listSwipeableMedia.module.css';
+import React from "react";
 import {
 	SwipeableList,
 	SwipeableListItem,
@@ -7,18 +9,15 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { useEffect, useState } from "react";
-import { GetSections } from "@/pages/api/section/GetSections";
-import { SectionInterface } from "@/components/formContent/formContent";
+import { GetMedia, MediaInterface } from "@/pages/api/media/GetMedia";
 import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
-import styles from "./css/listSwipeable.module.css";
 import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
+export default function ListSwipeableMedia() {
+	const [media, setMedia] = useState<MediaInterface[]>([]);
 
-export default function ListSwipeable() {
-	const [sections, setSections] = useState<SectionInterface[]>([]);
-
-	const handleDelete = async (id:number) => {
+	const handleDelete = async (id: number) => {
 		const response = await DeleteSection(id);
 		if (response instanceof Response) {
 			if (response.ok) {
@@ -29,17 +28,17 @@ export default function ListSwipeable() {
 					confirmButtonText: "Aceptar",
 					confirmButtonColor: "#ffcc00",
 					customClass: {
-							popup: "swal-custom-height",
-						},
+						popup: "swal-custom-height",
+					},
 				});
-				const updatedSections = await GetSections();
-				if (Array.isArray(updatedSections)) {
-					setSections(updatedSections);
+				const updateMedias = await GetMedia();
+				if (Array.isArray(updateMedias)) {
+					setMedia(updateMedias);
 				} else {
 					Swal.fire({
 						icon: "error",
 						title: "Error",
-						text: JSON.stringify(updatedSections.message),
+						text: JSON.stringify(updateMedias.message),
 						confirmButtonText: "Aceptar",
 						confirmButtonColor: "#3085d6",
 						width: 400,
@@ -60,7 +59,7 @@ export default function ListSwipeable() {
 		}
 	};
 
-	const trailingActions = (id:number) => (
+	const trailingActions = (id: number) => (
 		<TrailingActions>
 			<FaTrash
 				style={{
@@ -82,19 +81,22 @@ export default function ListSwipeable() {
 						customClass: {
 							popup: "swal-custom-height",
 						},
-					}).then(async(result) => {
+					}).then(async (result) => {
 						if (result.isConfirmed) {
 							handleDelete(id);
-						}else {
-							const filterSections = sections.filter(sections=>sections.id !== id)
-							setSections(filterSections);
+						} else {
+							const filterMedia= media.filter(
+								(medias) => medias.id !== id
+							);
+							setMedia(filterMedia);
 							setTimeout(async () => {
-							const updatedSections = await GetSections();
-							if (Array.isArray(updatedSections)) {
-								setSections(updatedSections);
-							}
-						}, 200);
-			}
+								const updatedMedias =
+									await GetMedia();
+								if (Array.isArray(updatedMedias)) {
+									setMedia(updatedMedias);
+								}
+							}, 200);
+						}
 					});
 				}}
 			>
@@ -103,9 +105,9 @@ export default function ListSwipeable() {
 		</TrailingActions>
 	);
 	useEffect(() => {
-		GetSections().then((res) => {
+		GetMedia().then((res) => {
 			if (Array.isArray(res)) {
-				setSections(res);
+				setMedia(res);
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -126,13 +128,13 @@ export default function ListSwipeable() {
 
 	return (
 		<>
-			<h2 className={styles.textSection}>
-				Administra tus secciones
+			<h2 className={Styles.textContent}>
+				Administra tus Contenidos
 			</h2>
-			<div className={styles.sectionListContainer}>
-				<div className={styles.sectionListDescription}>
+			<div className={Styles.mediaListContainer}>
+				<div className={Styles.mediaListDescription}>
 					<p>
-						Agrega, edita o elimina secciones de tu
+						Agrega, edita o elimina contenidos de tu
 						visualizador.
 					</p>
 					<p>
@@ -141,30 +143,53 @@ export default function ListSwipeable() {
 					</p>
 				</div>
 				<SwipeableList fullSwipe={true}>
-					{ sections.map((section) => (
+					{media.map((mediaMap) => (
 						<SwipeableListItem
-							trailingActions={trailingActions(section.id)}
-							key={section.id}
+							trailingActions={trailingActions(
+								mediaMap.id
+							)}
+							key={mediaMap.id}
 							swipeStartThreshold={30}
-
 						>
 							<div
-								key={section.id}
-								className={styles.section}
+								key={mediaMap.id}
+								className={Styles.media}
 							>
-								<div className={styles.sectionInfoContainer}>
-<Image className={styles.iconSectionList} width={'200'} height={'200'} src='/2800039-Photoroom.png' alt="icon Title"/>
-									<h3>Titulo: {section.title}</h3>
-								</div>
-								<div	className={styles.sectionInfoContainer}>
-									<Image className={styles.iconSectionList} width={'200'} height={'200'} src='/images-Photoroom.png' alt="icon Description"/>
 
-									<p>Descripción: {section.description}</p>
-
+								<div
+									className={
+										Styles.mediaImageContainer
+									}
+								>
+									<Image src={process.env.NEXT_PUBLIC_API_URL + mediaMap.url} width={600} height={600} alt={mediaMap.altText ?? ''}/>
 								</div>
-								<div	className={styles.sectionInfoContainer}>
-									<Image className={styles.iconSectionList} width={'200'} height={'200'} src='/ChatGPT Image 23 may 2025, 01_22_33 p.m.-Photoroom.png' alt="Icon Description" />
-									<p>Distribución: {section.distribution}</p>
+								<div className={Styles.mediaInfoContainer}>
+									<div
+										className={
+											Styles.mediaInfoContainer
+										}
+									>
+										<h3>
+											Titulo:{" "}
+											{mediaMap.altText}
+										</h3>
+									</div>
+									<div
+										className={
+											Styles.mediaInfoContainer
+										}
+									>
+										<p><span>Contenido asociado:</span></p>
+										{mediaMap.content.length >= 0 ? mediaMap.content?.map((content,index)=>{
+											return (
+												<p key={index}>
+													{content.title}{" "}
+												</p>
+											);
+										})
+										: <p>No hay contenido asociado</p>}
+
+									</div>
 								</div>
 
 							</div>

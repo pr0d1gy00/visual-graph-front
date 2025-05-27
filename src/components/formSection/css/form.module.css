@@ -1,5 +1,4 @@
 .formContainer{
-	margin-top: 10%;
 	width: 90%;
 	background-color: #ffffff;
 	border-radius: 2rem;
@@ -16,12 +15,11 @@
 
 .textForm{
 	text-align: center;
-	color: #ffffff;
-	font-size: 4rem;
+	color: #ffcc01;
+	font-size: 3rem;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
 
-	background-color: #ffcc00;
 	border-radius: 1rem
 }
 .containerSelect{
@@ -39,7 +37,7 @@
 	padding: 1rem;
 }
 option:hover{
-	background-color: #ffcc00;
+	background-color: #ffcc01;
 	color:#ffffff;
 }
 .containerInput{
@@ -57,9 +55,10 @@ option:hover{
 	margin: 0 auto;
 	height: 6rem;
 	border: none;
-	background-color: #ffcc00;
+	background-color: #ffcc01;
 	border-radius: 1rem;
-
+	font-weight: 700;
+	font-size: 2rem;
 }
 @media (width >= 900px) {
 	.formContainer{

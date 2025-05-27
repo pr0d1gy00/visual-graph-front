@@ -1,16 +1,20 @@
-.textSection{
-  color:#ffcc00;
-  font-size: 5rem;
+.textContent{
+  color:#ffcc01;
+  font-size: 4rem;
   text-align: center;
+    font-family: 'Nexa', sans-serif;
+  font-weight: 700;
 }
-.sectionListContainer{
+.contentListContainer{
   width: 90%;
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
+    font-family: 'Nexa', sans-serif;
+
 }
-.sectionListContainer p{
-  font-size: 2rem;
+.contentListContainer p{
+  font-size: 1.6rem;
   color: #010100;
   text-align: center;
   font-weight: 700;
@@ -21,7 +25,7 @@
   text-align: center;
   font-weight: 700;
 }
-.section{
+.content{
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #e3e3e3;
@@ -30,7 +34,7 @@
   color: #010100;
   flex-direction: column;
 }
-.sectionInfoContainer{
+.contentInfoContainer{
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -41,7 +45,7 @@
   object-fit: cover;
 
 }
-.sectionListDescription{
+.contentListDescription{
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -49,25 +53,24 @@
   margin: .5rem 0 3rem 0;
 
 }
-.section p{
+.content p{
   font-size: 1.8rem;
   text-align: left;
   font-weight: 400;
 }
 
-.section h3{
-  font-size: 2.5rem;
+.content h3{
+  font-size: 2rem;
 }
 
 @media (width >= 900px) {
-  .sectionListContainer{
+  .contentListContainer{
     width: 60%;
   }
-  .section{
+  .content{
     width: 100%;
-    padding: 2rem
   }
-  .textSection{
-  font-size: 5rem;
+  .textContent{
+  font-size: 4rem;
 }
 }

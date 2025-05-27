@@ -4,10 +4,12 @@
 	top: 30%;
 	left: 5%;
 	width: 50%;
+	font-family: 'Nexa', sans-serif;
+	font-weight: 700;
 }
 .textHomeContainer h2{
 	font-size: 8rem;
-	color: #ffcc00;
+	color: #ffcc01;
 	text-align: left;
 	margin-bottom: 2rem;
 	font-weight: 700;

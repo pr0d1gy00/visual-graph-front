@@ -130,11 +130,11 @@ export default function ListSwipeableContent() {
 
 	return (
 		<>
-			<h2 className={Styles.textSection}>
+			<h2 className={Styles.textContent}>
 				Administra tus Contenidos
 			</h2>
-			<div className={Styles.sectionListContainer}>
-				<div className={Styles.sectionListDescription}>
+			<div className={Styles.contentListContainer}>
+				<div className={Styles.contentListDescription}>
 					<p>
 						Agrega, edita o elimina contenidos de tu
 						visualizador.
@@ -159,7 +159,23 @@ export default function ListSwipeableContent() {
 							>
 								<div
 									className={
-										Styles.content
+										Styles.contentInfoContainer
+									}
+								>
+<Image
+										className={
+											Styles.iconSectionList
+										}
+										width={"200"}
+										height={"200"}
+										src="/2800039-Photoroom.png"
+										alt="icon Title"
+									/>
+									<h3>Titulo: {content.title}</h3>
+								</div>
+								<div
+									className={
+										Styles.contentInfoContainer
 									}
 								>
 									<Image
@@ -169,24 +185,9 @@ export default function ListSwipeableContent() {
 										width={"200"}
 										height={"200"}
 										src="/images-Photoroom.png"
-										alt="icon Title"
-									/>
-									<h3>Titulo: {content.title}</h3>
-								</div>
-								<div
-									className={
-										Styles.sectionInfoContainer
-									}
-								>
-									<Image
-										className={
-											Styles.iconSectionList
-										}
-										width={"200"}
-										height={"200"}
-										src="/2800039-Photoroom.png"
 										alt="icon Description"
 									/>
+
 									<p>
 										Descripción:{" "}
 										{content.body}
@@ -194,7 +195,7 @@ export default function ListSwipeableContent() {
 								</div>
 								<div
 									className={
-										Styles.sectionInfoContainer
+										Styles.contentInfoContainer
 									}
 								>
 									<Image
