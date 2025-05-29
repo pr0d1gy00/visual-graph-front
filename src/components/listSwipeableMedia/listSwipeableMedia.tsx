@@ -15,7 +15,6 @@ import { FaTrash } from "react-icons/fa";
 import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
 import { motion } from "motion/react";
-import { p } from "motion/react-client";
 
 export default function ListSwipeableMedia() {
 	const [media, setMedia] = useState<MediaInterface[]>([]);
