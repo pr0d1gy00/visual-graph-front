@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import Styles from '@/app/page.module.css'
-import Footer from '@/components/footer/footer'
 import ListSwipeableRelations from '@/components/listSwipeableRelations/listSwipeableRelations'
 import styles from '@/app/page.module.css'
 import { motion } from 'motion/react'

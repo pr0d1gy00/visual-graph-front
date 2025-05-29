@@ -1,5 +1,4 @@
 "use client";
-import Footer from "@/components/footer/footer";
 import styles from "@/app/page.module.css";
 import ListSwipeableContent from "@/components/listSwipeableContent/listSwipeableContent";
 import { motion } from "motion/react";
