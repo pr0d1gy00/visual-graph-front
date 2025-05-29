@@ -15,6 +15,7 @@ import { FaTrash } from "react-icons/fa";
 import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { p } from "motion/react-client";
 
 export default function ListSwipeableMedia() {
 	const [media, setMedia] = useState<MediaInterface[]>([]);
@@ -159,7 +160,7 @@ export default function ListSwipeableMedia() {
 					</motion.div>
 				</div>
 				<SwipeableList fullSwipe={true}>
-					{media.map((mediaMap) => (
+					{media.length > 0 ? media.map((mediaMap) => (
 						<SwipeableListItem
 							trailingActions={trailingActions(
 								mediaMap.id
@@ -175,7 +176,7 @@ export default function ListSwipeableMedia() {
 								viewport={{
 									once: false,
 									amount: 0.2,
-								}} // amount: qué porcentaje debe ser visible para animar
+								}}
 								transition={{
 									duration: 0.4,
 									type: "spring",
@@ -236,7 +237,7 @@ export default function ListSwipeableMedia() {
 												</span>
 											</p>
 											{mediaMap.content
-												.length >= 0 ? (
+												.length > 0 ? (
 												mediaMap.content?.map(
 													(
 														content,
@@ -266,7 +267,20 @@ export default function ListSwipeableMedia() {
 								</div>
 							</motion.div>
 						</SwipeableListItem>
-					))}
+					)) : (
+						<motion.div
+							className={Styles.noMedia}
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{
+								duration: 0.4,
+								type: "spring",
+								stiffness: 60,
+							}}
+						>
+							<p>No hay medias disponibles</p>
+						</motion.div>
+					) }
 				</SwipeableList>
 			</div>
 		</>
