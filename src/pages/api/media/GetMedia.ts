@@ -30,7 +30,6 @@ export async function GetMedia():Promise<
 			}
 		);
 		const data = await response.json();
-		console.log('response', data[0].content.length);
 		return data as MediaInterface[];
 	} catch (error: unknown) {
 			console.error("Error al obtener las secciones", error);
