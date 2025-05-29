@@ -6,8 +6,8 @@ import Label from "@/components/label/label";
 import { GetContent } from "@/pages/api/content/GetContent";
 import Swal from "sweetalert2";
 import { CreateMedia } from "@/pages/api/media/CreateMedia";
-import { GetMedia, MediaInterface } from "@/pages/api/media/GetMedia";
 import Image from "next/image";
+import { ContentDataInterface } from "../formContent/formContent";
 
 const inputs = [
 	{
@@ -52,8 +52,7 @@ export default function FormMedia() {
 		altText: "",
 		contentId: "",
 	});
-	const [content, setContent] = useState<any[]>([]);
-	const [image, setImage] = useState<MediaInterface[]>([]);
+	const [content, setContent] = useState<ContentDataInterface[]>([]);
 
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -116,25 +115,6 @@ export default function FormMedia() {
 		GetContent().then((res) => {
 			if (Array.isArray(res)) {
 				setContent(res);
-			} else {
-				Swal.fire({
-					icon: "error",
-					title: "Error",
-					text: JSON.stringify(res.message),
-					confirmButtonText: "Aceptar",
-					confirmButtonColor: "#ffcc00",
-					width: 400,
-					customClass: {
-						popup: "swal-custom-height",
-					},
-					timer: 5000,
-					timerProgressBar: true,
-				});
-			}
-		});
-		GetMedia().then((res) => {
-			if (Array.isArray(res)) {
-				setImage(res);
 			} else {
 				Swal.fire({
 					icon: "error",

@@ -1,5 +1,12 @@
 import { ContentDataInterface } from '../../../components/formContent/formContent';
 
+
+export interface ApiError {
+  success?: boolean; // Puede no estar presente en algunos errores
+  message: string;
+  error?: string;    // Puede estar presente si el backend lo envía
+  statusCode?: number; // Puede estar presente si el backend lo envía
+}
 export async function GetContent(): Promise<
  ContentDataInterface[] | { error: boolean;  message: string }
 >  {
@@ -15,14 +22,16 @@ export async function GetContent(): Promise<
 		const data = await response.json();
 
 		return data as ContentDataInterface[]
-	} catch (error:any) {
-		console.error("Error al obtener los contenidos", error);
-		const msg =
-			error && error.message && typeof error.message === "string" && error.message.length > 0
-				? error.message !== 'Failed to fetch'
-					? error.message
-					: 'Error de red o el servidor no responde. Error al obtener los contenidos'
-				: error && typeof error === "string"
-		return { error: true, message: msg };
-	}
+	} catch (error: unknown) {
+        console.error("Error al obtener los contenidos", error);
+        const msg =
+            error && typeof error === "object" && error !== null && "message" in error && typeof (error as ApiError).message === "string" && (error as ApiError).message.length > 0
+                ? (error as ApiError).message !== 'Failed to fetch'
+                    ? (error as ApiError).message
+                    : 'Error de red o el servidor no responde. Error al obtener los contenidos'
+                : typeof error === "string"
+                    ? error
+                    : "Error desconocido";
+        return { error: true, message: msg };
+    }
 }

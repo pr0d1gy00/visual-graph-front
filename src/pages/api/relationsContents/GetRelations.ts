@@ -1,3 +1,5 @@
+import { ApiError } from "next/dist/server/api-utils";
+
 export interface ContentDataInterface {
     id: number;
     sectionId: number;
@@ -35,14 +37,16 @@ export async function GetRelations() {
 			const data = await response.json();
 
 				return data as RelationInterface[]
-			} catch (error:any) {
-				console.error("Error al obtener los contenidos", error);
-				const msg =
-					error && error.message && typeof error.message === "string" && error.message.length > 0
-						? error.message !== 'Failed to fetch'
-							? error.message
-							: 'Error de red o el servidor no responde. Error al obtener los contenidos'
-						: error && typeof error === "string"
-				return { error: true, message: msg };
-			}
+			} catch (error: unknown) {
+                        console.error("Error al obtener las relaciones", error);
+                        const msg =
+                            error && typeof error === "object" && error !== null && "message" in error && typeof (error as ApiError).message === "string" && (error as ApiError).message.length > 0
+                                ? (error as ApiError).message !== 'Failed to fetch'
+                                    ? (error as ApiError).message
+                                    : 'Error de red o el servidor no responde. Error al obtener los contenidos'
+                                : typeof error === "string"
+                                    ? error
+                                    : "Error desconocido";
+                        return { error: true, message: msg };
+                    }
 }
