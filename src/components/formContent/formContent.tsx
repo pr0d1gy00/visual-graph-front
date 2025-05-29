@@ -6,6 +6,7 @@ import Label from "@/components/label/label";
 import { GetSections } from "@/pages/api/section/GetSections";
 import Swal from "sweetalert2";
 import { CreateContent } from "@/pages/api/content/CreateContent";
+import { MediaInterface } from "@/pages/api/media/GetMedia";
 
 const inputsContent = [
 	{
@@ -68,6 +69,7 @@ export interface ContentDataInterface {
 	body: string;
 	type: string;
 	order: number;
+	media: MediaInterface[];
 	sectionId: number;
 	isActive: boolean;
 	createdAt: string; // o Date si lo parseas
@@ -120,6 +122,13 @@ export default function FormContent() {
 						popup: "swal-custom-height",
 					},
 					timerProgressBar: true,
+				});
+				setInputs({
+					title: "",
+					body: "",
+					type: "",
+					order: 0,
+					sectionId: "",
 				});
 			} else {
 				Swal.fire({

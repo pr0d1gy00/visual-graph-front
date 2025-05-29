@@ -1,5 +1,4 @@
-
-.formContainer {
+.formRelationsContainer {
 	width: 90%;
 	background-color: #ffffff;
 	border-radius: 2rem;
@@ -13,12 +12,12 @@
     0 1.5px 6px 0 rgba(0,0,0,0.06),
     0 0.5px 1.5px 0 rgba(0,0,0,0.03);
 }
-.formMedia{
+.formRelations{
 	width: 100%;
 	display: flex;
 	flex-direction: column;
 }
-.formMediaText{
+.textRelations{
 	text-align: center;
 	color: #ffcc01;
 	font-size: 3rem;
@@ -52,30 +51,11 @@
 	font-size: 2rem;
 
 }
-.previewImageContainer{
-	width: 100%;
-	height: 30rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	border-radius: 2rem;
-	background-color: #ffffff;
-	border: 1px solid #e3e3e3;
-	margin-top: 1rem;
-	color: #010100;
-	font-size: 3rem;
-}
-.previewImage{
-	width: 100%;
-	height: 30rem;
-	object-fit: cover;
-	border-radius: 2rem;
-}
 @media (width >= 900px) {
-	.formContainer{
+	.formRelationsContainer{
 		width: 40%;
 	}
-	.formMediaInputsContainer{
+	.formRelationsInputContainer{
 		display: grid;
 		grid-template-columns: repeat(2,1fr);
 		gap: 1rem;

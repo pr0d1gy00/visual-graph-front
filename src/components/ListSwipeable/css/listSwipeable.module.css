@@ -32,11 +32,17 @@
   display: flex;
   color: #010100;
   flex-direction: column;
+    min-height: 15rem;
+  max-height: 15rem;
 }
+
+
 .sectionInfoContainer{
   display: flex;
   align-items: center;
   gap: 1rem;
+  height: 5rem;
+  overflow: hidden;
 }
 .iconSectionList{
   width:3rem;

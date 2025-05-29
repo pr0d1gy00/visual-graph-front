@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 8%;
+  flex: 1;
 }
 
 
@@ -22,6 +23,8 @@
   font-weight: 700;
   border: none;
   border-radius: 1rem;
+  font-family: 'Nexa', sans-serif;
+  font-weight: 700;
 }
 .createSectionButton:hover{
   cursor: pointer;

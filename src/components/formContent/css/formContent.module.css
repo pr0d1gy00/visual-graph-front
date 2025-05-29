@@ -6,6 +6,11 @@
 	height: auto;
 	margin-bottom: 4rem;
 	border: 1px solid #e3e3e3;
+	font-family: 'Nexa', sans-serif;
+	box-shadow:
+    0 2px 8px 0 rgba(0,0,0,0.08),
+    0 1.5px 6px 0 rgba(0,0,0,0.06),
+    0 0.5px 1.5px 0 rgba(0,0,0,0.03);
 }
 .formContentForm{
 	width: 100%;
@@ -18,7 +23,8 @@
 	font-size: 3rem;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
-	border-radius: 1rem
+	border-radius: 1rem;
+	font-weight: 700;
 }
 .formContainerSelect{
 	display: flex;

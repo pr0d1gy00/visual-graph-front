@@ -7,6 +7,7 @@ import { GetContent } from "@/pages/api/content/GetContent";
 import Swal from "sweetalert2";
 import { CreateMedia } from "@/pages/api/media/CreateMedia";
 import { GetMedia, MediaInterface } from "@/pages/api/media/GetMedia";
+import Image from "next/image";
 
 const inputs = [
 	{
@@ -44,7 +45,7 @@ export interface formValueInterface {
 	altText: string;
 	contentId: string;
 }
-export default function formMedia() {
+export default function FormMedia() {
 	const [formValues, setFormValues] = useState<formValueInterface>({
 		image: "",
 		type: "",
@@ -84,6 +85,12 @@ export default function formMedia() {
 						popup: "swal-custom-height",
 					},
 					timerProgressBar: true,
+				});
+				setFormValues({
+					image: "",
+					type: "",
+					altText: "",
+					contentId: "",
 				});
 			} else {
 				Swal.fire({
@@ -240,7 +247,7 @@ export default function formMedia() {
 									</option>
 									{input.name === "type"
 										? input.options?.map(
-												(option, index) => {
+												(option) => {
 													return (
 														<option
 															key={
@@ -259,41 +266,43 @@ export default function formMedia() {
 														</option>
 													);
 												}
-										)
-										: content.map(
-												(content, index) => {
-													return (
-														<option
-															key={
-																content.id
-															}
-															value={
-																content.id
-															}
-															className={
-																Styles.option
-															}
-														>
-															{
-																content.title
-															}
-														</option>
-													);
-												}
-										)}
+										  )
+										: content.map((content) => {
+												return (
+													<option
+														key={
+															content.id
+														}
+														value={
+															content.id
+														}
+														className={
+															Styles.option
+														}
+													>
+														{
+															content.title
+														}
+													</option>
+												);
+										  })}
 								</select>
 							</div>
 						);
 					})}
 				</div>
 				<div className={Styles.previewImageContainer}>
-					{!formValues.image ?
+					{!formValues.image ? (
 						<p className={Styles.textImage}>
 							Previsualiza la imagen
 						</p>
-					:
-						<img src={formValues.image} className={Styles.previewImage} 	alt="" />
-					}
+					) : (
+						<Image
+							src={formValues.image}
+							className={Styles.previewImage}
+							alt=""
+						/>
+					)}
 				</div>
 				<button type="submit" className={Styles.buttonSend}>
 					Enviar

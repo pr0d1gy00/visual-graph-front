@@ -9,7 +9,7 @@ const link =[
     { name: 'Sección', url: '/Section' },
     { name: 'Contenido', url: '/Content' },
     { name: 'Imagenes', url: '/Media' },
-	{ name: "Crea", url:"/Create"}
+	{ name: "Crea", url:"/RelationContents" },
 
 ]
 const header = () => {

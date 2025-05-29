@@ -15,6 +15,10 @@ import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
 import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
+import { motion } from "motion/react"
+
+
+
 export default function ListSwipeableContent() {
 	const [sections, setSections] = useState<ContentDataInterface[]>([]);
 
@@ -130,19 +134,31 @@ export default function ListSwipeableContent() {
 
 	return (
 		<>
-			<h2 className={Styles.textContent}>
+
+			<motion.h2
+				className={Styles.textContent}
+				initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, type: "spring", stiffness: 60 }}>
 				Administra tus Contenidos
-			</h2>
+			</motion.h2>
 			<div className={Styles.contentListContainer}>
 				<div className={Styles.contentListDescription}>
-					<p>
-						Agrega, edita o elimina contenidos de tu
-						visualizador.
-					</p>
-					<p>
-						Recuerda que puedes agregar contenido a cada
-						sección.
-					</p>
+					<motion.div
+						initial={{ opacity: 0, x: -20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.5, type: "spring", stiffness: 60 }}
+					>
+						<p>
+							Agrega, edita o elimina contenidos de tu
+							visualizador.
+						</p>
+						<p>
+							Recuerda que puedes agregar contenido a cada
+							sección.
+						</p>
+					</motion.div>
 				</div>
 				<SwipeableList fullSwipe={true}>
 					{sections.map((content) => (
@@ -153,66 +169,76 @@ export default function ListSwipeableContent() {
 							key={content.id}
 							swipeStartThreshold={30}
 						>
-							<div
+							<motion.div
 								key={content.id}
 								className={Styles.content}
+								initial={{ opacity: 0, y: 30 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.4, type: "spring", stiffness: 60 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								whileHover={{ scale: 1.02, boxShadow: "0 8px 24px rgba(0,0,0,0.13)" }}
 							>
 								<div
-									className={
-										Styles.contentInfoContainer
-									}
+									key={content.id}
+									className={Styles.content}
 								>
-<Image
+									<div
 										className={
-											Styles.iconSectionList
+											Styles.contentInfoContainer
 										}
-										width={"200"}
-										height={"200"}
-										src="/2800039-Photoroom.png"
-										alt="icon Title"
-									/>
-									<h3>Titulo: {content.title}</h3>
-								</div>
-								<div
-									className={
-										Styles.contentInfoContainer
-									}
-								>
-									<Image
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/2800039-Photoroom.png"
+											alt="icon Title"
+										/>
+										<h3>Titulo: {content.title}</h3>
+									</div>
+									<div
 										className={
-											Styles.iconSectionList
+											Styles.contentInfoContainer
 										}
-										width={"200"}
-										height={"200"}
-										src="/images-Photoroom.png"
-										alt="icon Description"
-									/>
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/images-Photoroom.png"
+											alt="icon Description"
+										/>
 
-									<p>
-										Descripción:{" "}
-										{content.body}
-									</p>
-								</div>
-								<div
-									className={
-										Styles.contentInfoContainer
-									}
-								>
-									<Image
+										<p>
+											Descripción:{" "}
+											{content.body}
+										</p>
+									</div>
+									<div
 										className={
-											Styles.iconSectionList
+											Styles.contentInfoContainer
 										}
-										width={"200"}
-										height={"200"}
-										src="/ChatGPT Image 23 may 2025, 01_22_33 p.m.-Photoroom.png"
-										alt="Icon Description"
-									/>
-									<p>
-										Distribución:{" "}
-										{content.type}
-									</p>
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/ChatGPT Image 23 may 2025, 01_22_33 p.m.-Photoroom.png"
+											alt="Icon Description"
+										/>
+										<p>
+											Distribución:{" "}
+											{content.type}
+										</p>
+									</div>
 								</div>
-							</div>
+							</motion.div>
 						</SwipeableListItem>
 					))}
 				</SwipeableList>

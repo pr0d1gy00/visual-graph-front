@@ -37,6 +37,7 @@ const inputs = [
 			{ name: "Flex Column", value: "flex column" },
 			{ name: "Grid", value: "grid" },
 			{ name: "Hero", value: "hero" },
+			{name: "Grid imagenes", value: "grid images"},
 		],
 	},
 	{
@@ -123,6 +124,7 @@ export default function Form() {
 					},
 
 				})
+				
 				setFormValues(initialState)
 			}else {
 				Swal.fire({

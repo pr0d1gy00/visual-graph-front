@@ -19,9 +19,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
-  height: 100%;
   display: flex;
   flex-direction: column;
+
 }
 .swal-custom-height {
   min-height: 300px; /* Ajusta el valor según lo que necesites */
@@ -54,11 +54,12 @@ ol {
 	margin: 0;
 }
 /* Cambia el fondo y el borde de cada item */
-
+.swipeable-list{
+  padding: 1rem;
+}
 .swipeable-list-item__trailing-actions{
   background: #ff5448 !important;
-  border-radius: 1rem !important;
-  margin-bottom: 1rem !important;
+  border-radius: 2rem !important;
   box-shadow: 0 2px 8px #0001 !important;
   transition: box-shadow 0.2s;
   color: #fff !important;
@@ -77,11 +78,22 @@ ol {
   font-size: 1.3rem;
 
 }
+.swipeable-list-item{
+  transition: box-shadow 0.2s;
+}
+.swipeable-list-item:hover {
+box-shadow:
+    0 8px 24px rgba(255, 204, 1,0.13),
+    0 1.5px 6px rgba(255, 204, 1,0.06),
+    0 0.5px 1.5px rgba(255, 204, 1,0.03);
+}
+
 @media (width >= 900px) {
   .swipeable-list{
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
     gap: 1rem !important;
+    border-radius: 2rem !important;
   }
   .swipeable-list-item{
     border-radius: 2rem !important;

@@ -1,26 +1,30 @@
 "use client";
-import Styles from "./css/listSwipeableMedia.module.css";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { FaTrash } from "react-icons/fa";
 import {
 	SwipeableList,
 	SwipeableListItem,
 	SwipeAction,
 	TrailingActions,
 } from "react-swipeable-list";
-import "react-swipeable-list/dist/styles.css";
-import { useEffect, useState } from "react";
-import { GetMedia, MediaInterface } from "@/pages/api/media/GetMedia";
 import Swal from "sweetalert2";
-import { FaTrash } from "react-icons/fa";
-import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
+import Styles from "./css/listSwipeableRelations.module.css";
+import {
+	GetRelations,
+	RelationInterface,
+} from "@/pages/api/relationsContents/GetRelations";
+import { DeleteRelations } from "@/pages/api/relationsContents/DeleteRelations";
+import "react-swipeable-list/dist/styles.css";
 import { motion } from "motion/react";
 
-export default function ListSwipeableMedia() {
-	const [media, setMedia] = useState<MediaInterface[]>([]);
+export default function ListSwipeableRelations() {
+	const [relations, setRelations] = useState<RelationInterface[]>(
+		[]
+	);
 
 	const handleDelete = async (id: number) => {
-		const response = await DeleteSection(id);
+		const response = await DeleteRelations(id);
 		if (response instanceof Response) {
 			if (response.ok) {
 				Swal.fire({
@@ -33,14 +37,16 @@ export default function ListSwipeableMedia() {
 						popup: "swal-custom-height",
 					},
 				});
-				const updateMedias = await GetMedia();
-				if (Array.isArray(updateMedias)) {
-					setMedia(updateMedias);
+				const updatedRelations = await GetRelations();
+				if (Array.isArray(updatedRelations)) {
+					setRelations(updatedRelations);
 				} else {
 					Swal.fire({
 						icon: "error",
 						title: "Error",
-						text: JSON.stringify(updateMedias.message),
+						text: JSON.stringify(
+							updatedRelations.message
+						),
 						confirmButtonText: "Aceptar",
 						confirmButtonColor: "#3085d6",
 						width: 400,
@@ -87,15 +93,15 @@ export default function ListSwipeableMedia() {
 						if (result.isConfirmed) {
 							handleDelete(id);
 						} else {
-							const filterMedia = media.filter(
-								(medias) => medias.id !== id
+							const filterRelations = relations.filter(
+								(relations) => relations.id !== id
 							);
-							setMedia(filterMedia);
+							setRelations(filterRelations);
 							setTimeout(async () => {
-								const updatedMedias =
-									await GetMedia();
-								if (Array.isArray(updatedMedias)) {
-									setMedia(updatedMedias);
+								const updatedRelations =
+									await GetRelations();
+								if (Array.isArray(updatedRelations)) {
+									setRelations(updatedRelations);
 								}
 							}, 200);
 						}
@@ -107,9 +113,10 @@ export default function ListSwipeableMedia() {
 		</TrailingActions>
 	);
 	useEffect(() => {
-		GetMedia().then((res) => {
+		GetRelations().then((res) => {
+			console.log(res);
 			if (Array.isArray(res)) {
-				setMedia(res);
+				setRelations(res);
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -132,15 +139,22 @@ export default function ListSwipeableMedia() {
 		<>
 			<motion.h2
 				className={Styles.textContent}
-				initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: -30 }}
 				animate={{ opacity: 1, y: 0 }}
-				transition={{ duration: 0.6, type: "spring", stiffness: 60 }}>
+				whileInView={{ opacity: 1, y: 0 }}
+				transition={{
+					duration: 0.6,
+					type: "spring",
+					stiffness: 60,
+				}}
+			>
 				Administra tus Contenidos
 			</motion.h2>
-			<div className={Styles.mediaListContainer}>
-				<div className={Styles.mediaListDescription}>
+			<div className={Styles.relationListContainer}>
+				<div className={Styles.relationListDescription}>
 					<motion.div
-						initial={{ opacity: 0, x: -20 }}
+						initial={{ opacity: 0, x: -50 }}
+						whileInView={{ opacity: 1, y: 0 }}
 						animate={{ opacity: 1, x: 0 }}
 						transition={{
 							duration: 0.5,
@@ -159,23 +173,19 @@ export default function ListSwipeableMedia() {
 					</motion.div>
 				</div>
 				<SwipeableList fullSwipe={true}>
-					{media.map((mediaMap) => (
+					{relations.map((content) => (
 						<SwipeableListItem
 							trailingActions={trailingActions(
-								mediaMap.id
+								content.id
 							)}
-							key={mediaMap.id}
+							key={content.id}
 							swipeStartThreshold={30}
 						>
 							<motion.div
-								key={mediaMap.id}
-								className={Styles.media}
+								key={content.id}
+								className={Styles.relation}
 								initial={{ opacity: 0, y: 30 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								viewport={{
-									once: false,
-									amount: 0.2,
-								}} // amount: qué porcentaje debe ser visible para animar
+								animate={{ opacity: 1, y: 0 }}
 								transition={{
 									duration: 0.4,
 									type: "spring",
@@ -186,82 +196,100 @@ export default function ListSwipeableMedia() {
 									boxShadow:
 										"0 8px 24px rgba(0,0,0,0.13)",
 								}}
+								whileInView={{ opacity: 1, y: 0 }}
 							>
 								<div
-									key={mediaMap.id}
-									className={Styles.media}
+									key={content.id}
+									className={Styles.relation}
 								>
 									<div
 										className={
-											Styles.mediaImageContainer
+											Styles.relationInfoContainer
 										}
 									>
-										<Image loading="lazy"
-											src={
-												process.env
-													.NEXT_PUBLIC_API_URL +
-												mediaMap.url
+										<Image
+											className={
+												Styles.iconSectionList
 											}
-											width={600}
-											height={600}
-											alt={
-												mediaMap.altText ?? ""
-											}
+											width={"200"}
+											height={"200"}
+											src="/2800039-Photoroom.png"
+											alt="icon Title"
 										/>
+										<h3>
+											Contenido:{" "}
+											{
+												content.parentContent
+													.title
+											}
+										</h3>
 									</div>
 									<div
 										className={
-											Styles.mediaInfoContainer
+											Styles.relationInfoContainer
 										}
 									>
-										<div
+										<Image
 											className={
-												Styles.mediaInfoContainer
+												Styles.iconSectionList
 											}
-										>
-											<h3>
-												Titulo:{" "}
-												{mediaMap.altText}
-											</h3>
-										</div>
-										<div
+											width={"200"}
+											height={"200"}
+											src="/images-Photoroom.png"
+											alt="icon Description"
+										/>
+
+										<p>
+											Sub-contenido:{" "}
+											{
+												content.childContent
+													.title
+											}
+										</p>
+									</div>
+									<div
+										className={
+											Styles.relationInfoContainer
+										}
+									>
+										<Image
 											className={
-												Styles.mediaInfoContainer
+												Styles.iconSectionList
 											}
-										>
-											<p>
-												<span>
-													Contenido
-													asociado:
-												</span>
-											</p>
-											{mediaMap.content
-												.length >= 0 ? (
-												mediaMap.content?.map(
-													(
-														content,
-														index
-													) => {
-														return (
-															<p
-																key={
-																	index
-																}
-															>
-																{
-																	content.title
-																}{" "}
-															</p>
-														);
-													}
-												)
-											) : (
-												<p>
-													No hay contenido
-													asociado
-												</p>
-											)}
-										</div>
+											width={"200"}
+											height={"200"}
+											src="/ChatGPT Image 23 may 2025, 01_22_33 p.m.-Photoroom.png"
+											alt="Icon Description"
+										/>
+										<p>
+											tipo contenido:{" "}
+											{
+												content.parentContent
+													.type
+											}
+										</p>
+									</div>
+									<div
+										className={
+											Styles.relationInfoContainer
+										}
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/ChatGPT Image 23 may 2025, 01_22_33 p.m.-Photoroom.png"
+											alt="Icon Description"
+										/>
+										<p>
+											tipo sub-contenido:{" "}
+											{
+												content.childContent
+													.type
+											}
+										</p>
 									</div>
 								</div>
 							</motion.div>
