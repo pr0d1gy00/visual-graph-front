@@ -33,9 +33,9 @@
   display: flex;
   color: #010100;
   flex-direction: column;
-  min-height: 15rem;
-  max-height: 15rem;
-
+  min-height: 17rem;
+  max-height: 17rem;
+  border-radius: 2rem;
 }
 .contentInfoContainer{
   display: flex;
@@ -59,14 +59,30 @@
 
 }
 
-.relation p{
-  font-size: 1.8rem;
+.content p{
+ font-size: 1.8rem;
   text-align: left;
   font-weight: 400;
+    -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp:1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
 }
 
-.relation h3{
+.content h3{
   font-size: 2rem;
+    display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp: 1;
+  white-space: normal;
+  max-width: 100%;
 }
 
 @media (width >= 900px) {
@@ -79,4 +95,5 @@
   .textContent{
   font-size: 4rem;
 }
+
 }

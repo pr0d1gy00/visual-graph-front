@@ -1,0 +1,26 @@
+/* clientelayout.module.css */
+.layoutWrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.mobileButtonContainer {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 200;
+  width: 5rem;
+  height: 5rem;
+}
+.mobileButton{
+	  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+}
+.icon{
+	width: 100%;
+	height: 100%;
+}

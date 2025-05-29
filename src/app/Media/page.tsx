@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import Header from "@/components/header/header";
 import Footer from "@/components/footer/footer";
 import styles from "@/app/page.module.css";
 import ListSwipeableMedia from "../../components/listSwipeableMedia/listSwipeableMedia";
@@ -8,7 +7,6 @@ import { motion } from "motion/react";
 export default function page() {
 	return (
 		<>
-			<Header />
 			<main className={styles.main}>
 				<div className={styles.createSection}>
 					<motion.button
@@ -32,7 +30,6 @@ export default function page() {
 				</div>
 				<ListSwipeableMedia />
 			</main>
-			<Footer />
 		</>
 	);
 }

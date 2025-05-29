@@ -45,6 +45,7 @@
 	align-items: center;
 	gap: 1rem;
 	color:#ffcc01;
+	z-index: 111;
 }
 
 @media (width >=900px) {

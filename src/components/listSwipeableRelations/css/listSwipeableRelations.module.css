@@ -62,10 +62,26 @@
   font-size: 1.8rem;
   text-align: left;
   font-weight: 400;
+    -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp:1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
 }
 
 .content h3{
   font-size: 2rem;
+    -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp:1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
 }
 
 @media (width >= 900px) {

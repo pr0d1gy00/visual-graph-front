@@ -80,6 +80,7 @@ ol {
 }
 .swipeable-list-item{
   transition: box-shadow 0.2s;
+  margin-bottom: 2rem !important;
 }
 .swipeable-list-item:hover {
 box-shadow:
@@ -97,5 +98,6 @@ box-shadow:
   }
   .swipeable-list-item{
     border-radius: 2rem !important;
+    margin-bottom: 0 !important;
   }
 }

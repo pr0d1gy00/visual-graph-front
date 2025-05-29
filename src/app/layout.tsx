@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Roboto } from 'next/font/google';
 import "@/globalStyles/styles.css";
 import "@/globalStyles/normalize.css";
-
+import ClientLayout from "@/components/clientLayout/ClientLayout";
+import Footer from "@/components/footer/footer";
 const roboto = Roboto({
   subsets: ['latin'],
   weight: ['400', '700'], // Puedes elegir los pesos que necesites
@@ -20,7 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.className} body`}>
+      <ClientLayout>
         {children}
+      </ClientLayout>
+      <Footer />
+
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 'use client'
 import React from 'react'
-import Header from '@/components/header/header'
 import Styles from '@/app/page.module.css'
 import Footer from '@/components/footer/footer'
 import ListSwipeableRelations from '@/components/listSwipeableRelations/listSwipeableRelations'
@@ -9,7 +8,6 @@ import { motion } from 'motion/react'
 export default function page() {
 	return (
 		<>
-			<Header />
 			<main className={Styles.main}>
 				<div className={styles.createSection}>
 					<motion.button
@@ -30,7 +28,6 @@ export default function page() {
 				</div>
 				<ListSwipeableRelations />
 			</main>
-			<Footer />
 		</>
 
 	)
