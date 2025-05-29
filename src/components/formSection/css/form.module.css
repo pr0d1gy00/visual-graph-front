@@ -39,10 +39,6 @@
 	border-radius: 2rem;
 	padding: 1rem;
 }
-option:hover{
-	background-color: #ffcc01;
-	color:#ffffff;
-}
 .containerInput{
 	display: flex;
 	flex-direction: column;
