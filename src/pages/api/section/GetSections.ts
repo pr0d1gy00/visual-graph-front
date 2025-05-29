@@ -25,7 +25,7 @@ export async function GetSections(): Promise<
 					error && typeof error === "object" && error !== null && "message" in error && typeof (error as ApiError).message === "string" && (error as ApiError).message.length > 0
 						? (error as ApiError).message !== 'Failed to fetch'
 							? (error as ApiError).message
-							: 'Error de red o el servidor no responde. Error al obtener los contenidos'
+							: 'Error de red o el servidor no responde. Error al obtener las secciones'
 						: typeof error === "string"
 							? error
 							: "Error desconocido";
