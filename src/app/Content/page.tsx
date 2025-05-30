@@ -2,7 +2,11 @@
 import styles from "@/app/page.module.css";
 import ListSwipeableContent from "@/components/listSwipeableContent/listSwipeableContent";
 import { motion } from "motion/react";
-export default function page() {
+import { useRouter } from "next/navigation";
+
+export default function Page() {
+	  const router = useRouter();
+
 	return (
 		<>
 			<main className={styles.main}>
@@ -20,7 +24,7 @@ export default function page() {
 							stiffness: 300,
 						}}
 						onClick={() =>
-							(window.location.href = "/Content/Create")
+							(router.push("/Content/Create"))
 						}
 					>
 						Crear Contenido

@@ -3,7 +3,11 @@ import React from "react";
 import styles from "@/app/page.module.css";
 import ListSwipeableMedia from "../../components/listSwipeableMedia/listSwipeableMedia";
 import { motion } from "motion/react";
-export default function page() {
+import { useRouter } from "next/navigation";
+
+export default function Page() {
+	  const router = useRouter();
+
 	return (
 		<>
 			<main className={styles.main}>
@@ -21,7 +25,7 @@ export default function page() {
 						}}
 						className={styles.createSectionButton}
 						onClick={() =>
-							(window.location.href = "/Media/Create")
+							(router.push("/Media/Create"))
 						}
 					>
 						Subir Media

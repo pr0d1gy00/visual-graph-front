@@ -1,10 +1,13 @@
 'use client'
 import React from 'react'
+import { useRouter } from "next/navigation";
 import Styles from '@/app/page.module.css'
 import ListSwipeableRelations from '@/components/listSwipeableRelations/listSwipeableRelations'
 import styles from '@/app/page.module.css'
 import { motion } from 'motion/react'
-export default function page() {
+export default function Page() {
+	const router = useRouter();
+
 	return (
 		<>
 			<main className={Styles.main}>
@@ -21,7 +24,7 @@ export default function page() {
 							type: "spring",
 							stiffness: 300,
 						}}
-						onClick={() => window.location.href = "/RelationContents/Create"}>
+						onClick={() => router.push( "/RelationContents/Create")}>
 						Crear Relación
 					</motion.button>
 				</div>

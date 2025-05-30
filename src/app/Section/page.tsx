@@ -2,8 +2,10 @@
 import styles from "@/app/page.module.css";
 import ListSwipeable from "@/components/ListSwipeable/ListSwipeable";
 import { motion } from "motion/react";
+import { useRouter } from "next/navigation";
 
 export default function Page() {
+  const router = useRouter();
 
 	return (
 		<>
@@ -21,7 +23,7 @@ export default function Page() {
 							type: "spring",
 							stiffness: 300,
 						}}
-						 onClick={() => window.location.href = "/Section/Create"}>
+						 onClick={() => router.push( "/Section/Create")}>
 						Crear Sección
 					</motion.button>
 				</div>
