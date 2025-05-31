@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { CreateMedia } from "@/pages/api/media/CreateMedia";
 import Image from "next/image";
 import { ContentDataInterface } from "../formContent/formContent";
+import { motion } from "motion/react";
 
 const inputs = [
 	{
@@ -52,7 +53,9 @@ export default function FormMedia() {
 		altText: "",
 		contentId: "",
 	});
-	const [content, setContent] = useState<ContentDataInterface[]>([]);
+	const [content, setContent] = useState<ContentDataInterface[]>(
+		[]
+	);
 
 	const handleChange = (
 		e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -134,9 +137,14 @@ export default function FormMedia() {
 	}, []);
 	return (
 		<div className={Styles.formContainer}>
-			<h2 className={Styles.formMediaText}>
+			<motion.h2
+				animate={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: -20 }}
+				transition={{ duration: 0.3, delay: 0.1 }}
+				className={Styles.formMediaText}
+			>
 				Añadele imagenes a tus contenido
-			</h2>
+			</motion.h2>
 			<form
 				action="POST"
 				encType="multipart/form-data"
@@ -148,9 +156,15 @@ export default function FormMedia() {
 						const name =
 							input.name as keyof formValueInterface;
 						return input.type !== "select" ? (
-							<div
+							<motion.div
 								key={index}
 								className={Styles.containerInput}
+								animate={{ opacity: 1, y: 0 }}
+								initial={{ opacity: 0, y: -20 }}
+								transition={{
+									duration: 0.3,
+									delay: index * 0.1,
+								}}
 							>
 								<Label
 									htmlFor={input.id}
@@ -202,15 +216,29 @@ export default function FormMedia() {
 													handleChange,
 										  })}
 								/>
-							</div>
+							</motion.div>
 						) : (
-							<div className={Styles.containerSelect}>
+							<motion.div
+								className={Styles.containerSelect}
+								animate={{ opacity: 1, y: 0 }}
+								initial={{ opacity: 0, y: -20 }}
+								transition={{
+									duration: 0.3,
+									delay: index * 0.1,
+								}}
+							>
 								<Label
 									htmlFor={input.id}
 									className={Styles.labelSelect}
 									name={input.label}
 								/>
-								<select
+								<motion.select
+									animate={{ opacity: 1, y: 0 }}
+									initial={{ opacity: 0, y: -20 }}
+									transition={{
+										duration: 0.3,
+										delay: index * 0.1,
+									}}
 									title={input.name}
 									name={input.name}
 									id={input.id}
@@ -266,8 +294,8 @@ export default function FormMedia() {
 													</option>
 												);
 										  })}
-								</select>
-							</div>
+								</motion.select>
+							</motion.div>
 						);
 					})}
 				</div>
@@ -284,9 +312,21 @@ export default function FormMedia() {
 						/>
 					)}
 				</div>
-				<button type="submit" className={Styles.buttonSend}>
+				<motion.button
+					whileHover={{
+						scale: 1.07,
+						boxShadow: "0 4px 16px rgba(255,204,1,0.25)",
+					}}
+					whileTap={{ scale: 0.97 }}
+					transition={{
+						type: "spring",
+						stiffness: 300,
+					}}
+					type="submit"
+					className={Styles.buttonSend}
+				>
 					Enviar
-				</button>
+				</motion.button>
 				{/* <div>
 						{image.map((img, index) => {
 							return (

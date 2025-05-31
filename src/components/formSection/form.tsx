@@ -4,8 +4,12 @@ import React, { FormEvent, useState } from "react";
 import Styles from "./css/form.module.css";
 import Input from "@/components/inputs/input";
 import Label from "@/components/label/label";
-import { CreateSection, CreateSectionDataInterface } from "@/pages/api/section/CreateSection";
+import {
+	CreateSection,
+	CreateSectionDataInterface,
+} from "@/pages/api/section/CreateSection";
 import Swal from "sweetalert2";
+import { motion } from "motion/react";
 const inputs = [
 	{
 		label: "Titulo",
@@ -37,7 +41,7 @@ const inputs = [
 			{ name: "Flex Column", value: "flex column" },
 			{ name: "Grid", value: "grid" },
 			{ name: "Hero", value: "hero" },
-			{name: "Grid imagenes", value: "grid images"},
+			{ name: "Grid imagenes", value: "grid images" },
 		],
 	},
 	{
@@ -68,7 +72,6 @@ const inputs = [
 	},
 ];
 
-
 export default function Form() {
 	const initialState: CreateSectionDataInterface = {
 		title: "",
@@ -77,7 +80,8 @@ export default function Form() {
 		isPublished: false,
 		order: 0,
 	};
-	const [formValues, setFormValues] = useState<CreateSectionDataInterface>(initialState);
+	const [formValues, setFormValues] =
+		useState<CreateSectionDataInterface>(initialState);
 
 	console.log(formValues);
 
@@ -96,12 +100,12 @@ export default function Form() {
 		}));
 	};
 
-	const handleSubmit = async (e:FormEvent<HTMLFormElement>)=>{
-		e.preventDefault()
-		const dataTosend:CreateSectionDataInterface = {
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+		const dataTosend: CreateSectionDataInterface = {
 			...formValues,
-			order:Number(formValues.order)
-		}
+			order: Number(formValues.order),
+		};
 		const response = await CreateSection({
 			...dataTosend,
 			userId: 1,
@@ -109,110 +113,174 @@ export default function Form() {
 		});
 		if (response instanceof Response) {
 			const result = await response.json();
-			console.log(result)
-			if(response.status === 201 || response.status === 200){
+			console.log(result);
+			if (response.status === 201 || response.status === 200) {
 				Swal.fire({
-					icon:"success",
-					title:"Felicitaciones!",
-					text:`${result.message}. Ve a Content para crear el contenido de tu sección`,
-					iconColor:"#ffcc00",
-					width:"500",
-					confirmButtonColor:"#ffcc00",
-					heightAuto:false,
+					icon: "success",
+					title: "Felicitaciones!",
+					text: `${result.message}. Ve a Content para crear el contenido de tu sección`,
+					iconColor: "#ffcc00",
+					width: "500",
+					confirmButtonColor: "#ffcc00",
+					heightAuto: false,
 					customClass: {
-						popup: 'swal-custom-height'
+						popup: "swal-custom-height",
 					},
+				});
 
-				})
-				
-				setFormValues(initialState)
-			}else {
+				setFormValues(initialState);
+			} else {
 				Swal.fire({
-					icon:"error",
-					iconColor:"#ffcc00",
-					title:"Oh no!",
-					text:typeof result.message === "string" ? result.message : JSON.stringify(result.message),
+					icon: "error",
+					iconColor: "#ffcc00",
+					title: "Oh no!",
+					text:
+						typeof result.message === "string"
+							? result.message
+							: JSON.stringify(result.message),
 					customClass: {
-						popup: 'swal-custom-height'
+						popup: "swal-custom-height",
 					},
-
-				})
-
+				});
 			}
 		}
-	}
+	};
 
 	return (
 		<div className={Styles.formContainer}>
-			<h2 className={Styles.textForm}>Registrar Sección</h2>
-			<form action="POST" className={Styles.form} onSubmit={handleSubmit}>
+			<motion.h2
+				className={Styles.textForm}
+				animate={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: -20 }}
+				transition={{ duration: 0.3, delay: 0.1 }}
+			>
+				Registrar Sección
+			</motion.h2>
+			<form
+				action="POST"
+				className={Styles.form}
+				onSubmit={handleSubmit}
+			>
 				<div className={Styles.formInputsContainer}>
-				{inputs
-					.filter((input) => input.name !== "isActive")
-					.map((input, index) =>{
-						const name = input.name as keyof CreateSectionDataInterface;
+					{inputs
+						.filter((input) => input.name !== "isActive")
+						.map((input, index) => {
+							const name =
+								input.name as keyof CreateSectionDataInterface;
 
-						return input.typeBox === "input" ? (
-							<div
-								key={index}
-								className={Styles.containerInput}
-							>
-								<Label
-									htmlFor={input.id}
-									className={Styles.labelInput}
-									name={input.label}
-								/>
-								<Input
-									className={Styles.input}
-									type={input.type}
-									placeholder={input.placeholder}
-									name={input.name}
-									id={input.id}
-									onChange={handleChange}
-									{...(input.type === "checkbox"
-										? { checked: Boolean(formValues[name]) }
-										: { value: formValues[name] as string | number |undefined })}
-								/>
-							</div>
-						) : (
-							<div
-								key={index}
-								className={Styles.containerSelect}
-							>
-								<Label
-									htmlFor={input.id}
-									className={Styles.labelSelect}
-									name={input.label}
-								/>
-								<select
-									title={input.name}
-									name={input.name}
-									id={input.id}
-									className={Styles.select}
-									onChange={handleChange}
-									value={formValues.distribution}
+							return input.typeBox === "input" ? (
+								<motion.div
+									animate={{ opacity: 1, y: 0 }}
+									initial={{ opacity: 0, y: -20 }}
+									transition={{
+										duration: 0.3,
+										delay: index * 0.1,
+									}}
+									key={index}
+									className={Styles.containerInput}
 								>
-									<option value="">
-										{" "}
-										-- Selecciona una opcion --
-									</option>
-									{input.options?.map((option) => (
-										<option
-											key={option.value}
-											value={option.value}
-											className={Styles.option}
-										>
-											{option.name}
+									<Label
+										htmlFor={input.id}
+										className={Styles.labelInput}
+										name={input.label}
+									/>
+									<Input
+										className={Styles.input}
+										type={input.type}
+										placeholder={
+											input.placeholder
+										}
+										name={input.name}
+										id={input.id}
+										onChange={handleChange}
+										{...(input.type === "checkbox"
+											? {
+													checked: Boolean(
+														formValues[
+															name
+														]
+													),
+											  }
+											: {
+													value: formValues[
+														name
+													] as
+														| string
+														| number
+														| undefined,
+											  })}
+									/>
+								</motion.div>
+							) : (
+								<div
+									key={index}
+									className={Styles.containerSelect}
+								>
+									<Label
+										htmlFor={input.id}
+										className={Styles.labelSelect}
+										name={input.label}
+									/>
+									<motion.select
+										animate={{ opacity: 1, y: 0 }}
+										initial={{
+											opacity: 0,
+											y: -20,
+										}}
+										transition={{
+											duration: 0.3,
+											delay: index * 0.1,
+										}}
+										title={input.name}
+										name={input.name}
+										id={input.id}
+										className={Styles.select}
+										onChange={handleChange}
+										value={
+											formValues.distribution
+										}
+									>
+										<option value="">
+											{" "}
+											-- Selecciona una opcion
+											--
 										</option>
-									))}
-								</select>
-							</div>
-						)
-					}
-					)}
+										{input.options?.map(
+											(option) => (
+												<option
+													key={option.value}
+													value={
+														option.value
+													}
+													className={
+														Styles.option
+													}
+												>
+													{option.name}
+												</option>
+											)
+										)}
+									</motion.select>
+								</div>
+							);
+						})}
 				</div>
 
-					<button type="submit" className={Styles.buttonSend}>Enviar</button>
+				<motion.button
+					whileHover={{
+						scale: 1.07,
+						boxShadow: "0 4px 16px rgba(255,204,1,0.25)",
+					}}
+					whileTap={{ scale: 0.97 }}
+					transition={{
+						type: "spring",
+						stiffness: 300,
+					}}
+					type="submit"
+					className={Styles.buttonSend}
+				>
+					Enviar
+				</motion.button>
 			</form>
 		</div>
 	);

@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import Styles from "./css/clientelayout.module.css";
 import { FaBars } from "react-icons/fa";
 
-
 export default function ClientLayout({
 	children,
 }: {
@@ -14,17 +13,26 @@ export default function ClientLayout({
 }) {
 	const { width } = useScreenSize();
 	const [isMobile, setIsMobile] = useState(false);
+	const [isMounted, setIsMounted] = useState(false);
+
+	useEffect(() => {
+		setIsMounted(true);
+	}, []);
 
 	useEffect(() => {
 		if (width < 600) setIsMobile(false);
 	}, [width]);
+
+	if (!isMounted) {
+		// Opcional: puedes devolver un loader o null
+		return null;
+	}
+
 	return (
 		<div className={Styles.layoutWrapper}>
 			{/* Header fijo */}
 			{(width >= 900 || isMobile) && (
-
-					<Header setIsMobile={setIsMobile} width={width} />
-
+				<Header setIsMobile={setIsMobile} width={width} />
 			)}
 			{width < 900 && !isMobile && (
 				<div className={Styles.mobileButtonContainer}>
@@ -42,8 +50,6 @@ export default function ClientLayout({
 					</motion.button>
 				</div>
 			)}
-
-			{/* Contenido principal */}
 			<div className={Styles.mainContent}>{children}</div>
 		</div>
 	);

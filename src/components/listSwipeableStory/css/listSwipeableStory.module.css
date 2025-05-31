@@ -1,0 +1,99 @@
+.textContent{
+  color:#ffcc01;
+  font-size: 4rem;
+  text-align: center;
+    font-family: 'Nexa', sans-serif;
+  font-weight: 700;
+}
+.contentListContainer{
+  width: 90%;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 3rem;
+    font-family: 'Nexa', sans-serif;
+
+}
+.contentListContainer p{
+  font-size: 1.6rem;
+  color: #010100;
+  text-align: center;
+  font-weight: 700;
+}
+.textNoSection{
+  color: #010100;
+  font-size: 3.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+.content{
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 1rem 2.5rem;
+  display: flex;
+  color: #010100;
+  flex-direction: column;
+  min-height: 17rem;
+  max-height: 17rem;
+  border-radius: 2rem;
+}
+.contentInfoContainer{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 5rem;
+  overflow: hidden;
+}
+.iconSectionList{
+  width:3rem;
+  height: 3rem;
+  object-fit: cover;
+
+}
+.contentListDescription{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: .5rem 0 3rem 0;
+
+}
+
+.content p{
+  text-align: left;
+  font-weight: 400;
+    -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp:1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.content h3{
+	font-size: 1.6rem;
+
+	display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1; 
+  line-clamp: 1;
+  white-space: normal;
+  max-width: 100%;
+}
+
+@media (width >= 900px) {
+  .contentListContainer{
+    width: 60%;
+  }
+  .relation{
+    width: 100%;
+  }
+  .textContent{
+  font-size: 4rem;
+}
+
+}

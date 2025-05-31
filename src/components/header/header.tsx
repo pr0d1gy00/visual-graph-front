@@ -18,6 +18,8 @@ const link = [
 	{ name: "Contenido", url: "/Content" },
 	{ name: "Imagenes", url: "/Media" },
 	{ name: "Crea", url: "/RelationContents" },
+	{ name: "Historias", url: "/Story" },
+	{ name: "Historia media", url: "/StoryMedia" },
 ];
 
 const Header = ({setIsMobile,width}:HeaderProps) => {
@@ -51,7 +53,7 @@ const Header = ({setIsMobile,width}:HeaderProps) => {
 										Styles.headerLinkContainer
 									}
 									onClick={() => {
-										setIsMobile(false);	
+										setIsMobile(false);
 									}}
 								>
 									{link.name}

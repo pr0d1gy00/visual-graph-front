@@ -1,0 +1,247 @@
+"use client";
+import React from "react";
+import Styles from "./css/listSwipeableStory.module.css"
+import {
+	SwipeableList,
+	SwipeableListItem,
+	SwipeAction,
+	TrailingActions,
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
+import { useEffect, useState } from "react";
+
+import Swal from "sweetalert2";
+import { FaTrash } from "react-icons/fa";
+import { DeleteSection } from "@/pages/api/section/DeleteSection";
+import Image from "next/image";
+import { motion } from "motion/react"
+import { GetStories, StoriesInterface } from "@/pages/api/story/GetStories";
+
+
+export default function ListSwipeableStory() {
+	const [stories, setStories] = useState<StoriesInterface[]>([]);
+
+	const handleDelete = async (id: number) => {
+		const response = await DeleteSection(id);
+		if (response instanceof Response) {
+			if (response.ok) {
+				Swal.fire({
+					icon: "success",
+					title: "Eliminado",
+					text: "Eliminado correctamente",
+					confirmButtonText: "Aceptar",
+					confirmButtonColor: "#ffcc00",
+					customClass: {
+						popup: "swal-custom-height",
+					},
+				});
+				const updatedStories = await GetStories();
+				if (Array.isArray(updatedStories)) {
+					setStories(updatedStories);
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: "Error",
+						text: JSON.stringify(updatedStories.message),
+						confirmButtonText: "Aceptar",
+						confirmButtonColor: "#3085d6",
+						width: 400,
+						customClass: {
+							popup: "swal-custom-height",
+						},
+						timer: 5000,
+						timerProgressBar: true,
+					});
+				}
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: "No se pudo eliminar",
+				});
+			}
+		}
+	};
+
+	const trailingActions = (id: number) => (
+		<TrailingActions>
+			<FaTrash
+				style={{
+					color: "white",
+					fontSize: "3rem",
+				}}
+			/>
+			<SwipeAction
+				destructive={true}
+				onClick={() => {
+					Swal.fire({
+						title: "¿Estás seguro?",
+						text: "	Esta acción no se puede deshacer",
+						icon: "warning",
+						showCancelButton: true,
+						confirmButtonText: "Eliminar",
+						confirmButtonColor: "#ffcc00",
+						cancelButtonText: "Cancelar",
+						customClass: {
+							popup: "swal-custom-height",
+						},
+					}).then(async (result) => {
+						if (result.isConfirmed) {
+							handleDelete(id);
+						} else {
+							const filterSections = stories.filter(
+								(storiestoFilter) => storiestoFilter.id !== id
+							);
+							setStories(filterSections);
+							setTimeout(async () => {
+								const updatedSections =
+									await GetStories();
+								if (Array.isArray(updatedSections)) {
+									setStories(updatedSections);
+								}
+							}, 200);
+						}
+					});
+				}}
+			>
+				Delete
+			</SwipeAction>
+		</TrailingActions>
+	);
+	useEffect(() => {
+		GetStories().then((res) => {
+			console.log(res)
+			if (Array.isArray(res)) {
+				setStories(res);
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Error",
+					text: JSON.stringify(res.message),
+					confirmButtonText: "Aceptar",
+					confirmButtonColor: "#3085d6",
+					width: 400,
+					customClass: {
+						popup: "swal-custom-height",
+					},
+					timer: 5000,
+					timerProgressBar: true,
+				});
+			}
+		});
+	}, []);
+
+	return (
+		<>
+
+			<motion.h2
+				className={Styles.textContent}
+				initial={{ opacity: 0, y: -30 }} whileInView={{ opacity: 1, y: 0 }}
+				animate={{ opacity: 1, y: 0 }}
+				transition={{ duration: 0.6, type: "spring", stiffness: 60 }}>
+				Administra tus Contenidos
+			</motion.h2>
+			<div className={Styles.contentListContainer}>
+				<div className={Styles.contentListDescription}>
+					<motion.div
+						initial={{ opacity: 0, x: -20 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						animate={{ opacity: 1, x: 0 }}
+						transition={{ duration: 0.5, type: "spring", stiffness: 60 }}
+					>
+						<p>
+							Agrega, edita o elimina historias de tu
+							visualizador.
+						</p>
+						<p>
+							Recuerda que puedes agregar media a cada
+							historia.
+						</p>
+					</motion.div>
+				</div>
+				<SwipeableList fullSwipe={true}>
+					{stories.map((content) => (
+						<SwipeableListItem
+							trailingActions={trailingActions(
+								content.id
+							)}
+							key={content.id}
+							swipeStartThreshold={30}
+						>
+							<motion.div
+								key={content.id}
+								className={Styles.content}
+								initial={{ opacity: 0, y: 30 }}
+								animate={{ opacity: 1, y: 0 }}
+								transition={{ duration: 0.4, type: "spring", stiffness: 60 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								whileHover={{ scale: 1.02, boxShadow: "0 8px 24px rgba(0,0,0,0.13)" }}
+							>
+								<div
+									key={content.id}
+									className={Styles.content}
+								>
+									<div
+										className={
+											Styles.contentInfoContainer
+										}
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/2800039-Photoroom.png"
+											alt="icon Title"
+										/>
+										<h3>Titulo: {content.title}</h3>
+									</div>
+									<div
+										className={
+											Styles.contentInfoContainer
+										}
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/images-Photoroom.png"
+											alt="icon Description"
+										/>
+
+										<p>
+											Creada:{" "}
+											{content.createdAt.slice(0, 10)}
+										</p>
+									</div>
+									<div
+										className={
+											Styles.contentInfoContainer
+										}
+									>
+										<Image
+											className={
+												Styles.iconSectionList
+											}
+											width={"200"}
+											height={"200"}
+											src="/ChatGPT Image 23 may 2025, 01_22_33 p.m.-Photoroom.png"
+											alt="Icon Description"
+										/>
+										<p>
+											Expira:{" "}
+											{content.expiresAt.slice(0, 10)}
+										</p>
+									</div>
+								</div>
+							</motion.div>
+						</SwipeableListItem>
+					))}
+				</SwipeableList>
+			</div>
+		</>
+	);
+}

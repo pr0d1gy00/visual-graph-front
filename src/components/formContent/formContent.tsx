@@ -7,6 +7,7 @@ import { GetSections } from "@/pages/api/section/GetSections";
 import Swal from "sweetalert2";
 import { CreateContent } from "@/pages/api/content/CreateContent";
 import { MediaInterface } from "@/pages/api/media/GetMedia";
+import { motion } from "motion/react";
 
 const inputsContent = [
 	{
@@ -173,9 +174,14 @@ export default function FormContent() {
 	}, []);
 	return (
 		<div className={Styles.formContentContainer}>
-			<h2 className={Styles.textContent}>
+			<motion.h2
+				animate={{ opacity: 1, y: 0 }}
+				initial={{ opacity: 0, y: -20 }}
+				transition={{ duration: 0.3, delay: 0.1 }}
+				className={Styles.textContent}
+			>
 				Registrar Contenido
-			</h2>
+			</motion.h2>
 			<form
 				action="POST"
 				onSubmit={handleSubmit}
@@ -185,7 +191,13 @@ export default function FormContent() {
 					{inputsContent.map((input, index) => {
 						if (input.type === "select") {
 							return (
-								<div
+								<motion.div
+									animate={{ opacity: 1, y: 0 }}
+									initial={{ opacity: 0, y: -20 }}
+									transition={{
+										duration: 0.3,
+										delay: index * 0.1,
+									}}
 									key={index}
 									className={
 										Styles.formContainerSelect
@@ -195,7 +207,16 @@ export default function FormContent() {
 										htmlFor={input.id}
 										name={input.label}
 									/>
-									<select
+									<motion.select
+										animate={{ opacity: 1, y: 0 }}
+										initial={{
+											opacity: 0,
+											y: -20,
+										}}
+										transition={{
+											duration: 0.3,
+											delay: index * 0.1,
+										}}
 										title={input.name}
 										name={input.name}
 										id={input.id}
@@ -256,16 +277,22 @@ export default function FormContent() {
 														);
 													}
 											  )}
-									</select>
-								</div>
+									</motion.select>
+								</motion.div>
 							);
 						} else {
 							return (
-								<div
+								<motion.div
 									key={index}
 									className={
 										Styles.formContainerInput
 									}
+									animate={{ opacity: 1, y: 0 }}
+									initial={{ opacity: 0, y: -20 }}
+									transition={{
+										duration: 0.3,
+										delay: index * 0.1,
+									}}
 								>
 									<Label
 										htmlFor={input.id}
@@ -278,14 +305,26 @@ export default function FormContent() {
 										onChange={handleChange}
 										placeholder={input.label}
 									/>
-								</div>
+								</motion.div>
 							);
 						}
 					})}
 				</div>
-				<button type="submit" className={Styles.buttonSend}>
+				<motion.button
+					whileHover={{
+						scale: 1.07,
+						boxShadow: "0 4px 16px rgba(255,204,1,0.25)",
+					}}
+					whileTap={{ scale: 0.97 }}
+					transition={{
+						type: "spring",
+						stiffness: 300,
+					}}
+					type="submit"
+					className={Styles.buttonSend}
+				>
 					Enviar
-				</button>
+				</motion.button>
 			</form>
 		</div>
 	);
