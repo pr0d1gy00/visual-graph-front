@@ -1,28 +1,27 @@
 import { ApiError } from 'next/dist/server/api-utils';
-import { ContentDataInterface } from '../../../components/formContent/formContent';
-export interface MediaInterface {
+export interface StoryMediaInterface {
+  id: number;
+  storyId: number;
+  url: string;
+  type: string;
+  duration: number | null;
+  order: number;
+  story: {
     id: number;
-    contentId: number;
-    url: string;
-    type: string;
-	content:ContentDataInterface
-    altText: string | null;
-    caption: string | null;
-    width: number | null;
-    height: number | null;
-    duration: number | null;
-    fileSize: number | null;
-    thumbnailUrl: string | null;
+    title: string;
     isActive: boolean;
-    createdAt: string;
+    createdAt: string;    // ISO date string
+    expiresAt: string;    // ISO date string
+    userId: number;
+  };
 }
 
-export async function GetMedia():Promise<
-	MediaInterface[] | { error: boolean;  message: string }
+export async function GetStoriesMedia():Promise<
+	StoryMediaInterface[] | { error: boolean;  message: string }
 > {
 	try {
 		const response = await fetch(
-			`${process.env.NEXT_PUBLIC_API_URL}/api/visualgraph/media/`,
+			`${process.env.NEXT_PUBLIC_API_URL}/api/visualgraph/storiesMedia/`,
 			{
 				method: "GET",
 				mode: "cors",
@@ -30,7 +29,7 @@ export async function GetMedia():Promise<
 			}
 		);
 		const data = await response.json();
-		return data as MediaInterface[];
+		return data as StoryMediaInterface[];
 	} catch (error: unknown) {
 			console.error("Error al obtener las secciones", error);
 			const msg =

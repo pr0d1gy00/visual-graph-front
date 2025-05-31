@@ -1,114 +1,111 @@
 "use client";
-import Styles from "./css/listSwipeableMedia.module.css";
+import Styles from "./css/listSwipeableStoriesMedia.module.css";
 import React from "react";
 import {
 	SwipeableList,
 	SwipeableListItem,
-	SwipeAction,
-	TrailingActions,
+
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { useEffect, useState } from "react";
-import { GetMedia, MediaInterface } from "@/pages/api/media/GetMedia";
 import Swal from "sweetalert2";
-import { FaTrash } from "react-icons/fa";
-import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
 import { motion } from "motion/react";
+import { GetStoriesMedia, StoryMediaInterface } from "@/pages/api/StoryMedia/GetStoryMedia";
 
-export default function ListSwipeableMedia() {
-	const [media, setMedia] = useState<MediaInterface[]>([]);
+export default function ListSwipeableStoriesMedia() {
+	const [media, setMedia] = useState<StoryMediaInterface[]>([]);
 
-	const handleDelete = async (id: number) => {
-		const response = await DeleteSection(id);
-		if (response instanceof Response) {
-			if (response.ok) {
-				Swal.fire({
-					icon: "success",
-					title: "Eliminado",
-					text: "Eliminado correctamente",
-					confirmButtonText: "Aceptar",
-					confirmButtonColor: "#ffcc00",
-					customClass: {
-						popup: "swal-custom-height",
-					},
-				});
-				const updateMedias = await GetMedia();
-				if (Array.isArray(updateMedias)) {
-					setMedia(updateMedias);
-				} else {
-					Swal.fire({
-						icon: "error",
-						title: "Error",
-						text: JSON.stringify(updateMedias.message),
-						confirmButtonText: "Aceptar",
-						confirmButtonColor: "#3085d6",
-						width: 400,
-						customClass: {
-							popup: "swal-custom-height",
-						},
-						timer: 5000,
-						timerProgressBar: true,
-					});
-				}
-			} else {
-				Swal.fire({
-					icon: "error",
-					title: "Error",
-					text: "No se pudo eliminar",
-				});
-			}
-		}
-	};
+	// const handleDelete = async (id: number) => {
+	// 	const response = await DeleteSection(id);
+	// 	if (response instanceof Response) {
+	// 		if (response.ok) {
+	// 			Swal.fire({
+	// 				icon: "success",
+	// 				title: "Eliminado",
+	// 				text: "Eliminado correctamente",
+	// 				confirmButtonText: "Aceptar",
+	// 				confirmButtonColor: "#ffcc00",
+	// 				customClass: {
+	// 					popup: "swal-custom-height",
+	// 				},
+	// 			});
+	// 			const updateMedias = await GetStoriesMedia();
+	// 			if (Array.isArray(updateMedias)) {
+	// 				setMedia(updateMedias);
+	// 			} else {
+	// 				Swal.fire({
+	// 					icon: "error",
+	// 					title: "Error",
+	// 					text: JSON.stringify(updateMedias.message),
+	// 					confirmButtonText: "Aceptar",
+	// 					confirmButtonColor: "#3085d6",
+	// 					width: 400,
+	// 					customClass: {
+	// 						popup: "swal-custom-height",
+	// 					},
+	// 					timer: 5000,
+	// 					timerProgressBar: true,
+	// 				});
+	// 			}
+	// 		} else {
+	// 			Swal.fire({
+	// 				icon: "error",
+	// 				title: "Error",
+	// 				text: "No se pudo eliminar",
+	// 			});
+	// 		}
+	// 	}
+	// };
 
-	const trailingActions = (id: number) => (
-		<TrailingActions>
-			<FaTrash
-				style={{
-					color: "white",
-					fontSize: "3rem",
-				}}
-			/>
-			<SwipeAction
-				destructive={true}
-				onClick={() => {
-					Swal.fire({
-						title: "¿Estás seguro?",
-						text: "	Esta acción no se puede deshacer",
-						icon: "warning",
-						showCancelButton: true,
-						confirmButtonText: "Eliminar",
-						confirmButtonColor: "#ffcc00",
-						cancelButtonText: "Cancelar",
-						customClass: {
-							popup: "swal-custom-height",
-						},
-					}).then(async (result) => {
-						if (result.isConfirmed) {
-							handleDelete(id);
-						} else {
-							const filterMedia = media.filter(
-								(medias) => medias.id !== id
-							);
-							setMedia(filterMedia);
-							setTimeout(async () => {
-								const updatedMedias =
-									await GetMedia();
-								if (Array.isArray(updatedMedias)) {
-									setMedia(updatedMedias);
-								}
-							}, 200);
-						}
-					});
-				}}
-			>
-				Delete
-			</SwipeAction>
-		</TrailingActions>
-	);
+	// const trailingActions = (id: number) => (
+	// 	<TrailingActions>
+	// 		<FaTrash
+	// 			style={{
+	// 				color: "white",
+	// 				fontSize: "3rem",
+	// 			}}
+	// 		/>
+	// 		<SwipeAction
+	// 			destructive={true}
+	// 			onClick={() => {
+	// 				Swal.fire({
+	// 					title: "¿Estás seguro?",
+	// 					text: "	Esta acción no se puede deshacer",
+	// 					icon: "warning",
+	// 					showCancelButton: true,
+	// 					confirmButtonText: "Eliminar",
+	// 					confirmButtonColor: "#ffcc00",
+	// 					cancelButtonText: "Cancelar",
+	// 					customClass: {
+	// 						popup: "swal-custom-height",
+	// 					},
+	// 				}).then(async (result) => {
+	// 					if (result.isConfirmed) {
+	// 						handleDelete(id);
+	// 					} else {
+	// 						const filterMedia = media.filter(
+	// 							(medias) => medias.id !== id
+	// 						);
+	// 						setMedia(filterMedia);
+	// 						setTimeout(async () => {
+	// 							const updatedMedias =
+	// 								await GetStoriesMedia();
+	// 							if (Array.isArray(updatedMedias)) {
+	// 								setMedia(updatedMedias);
+	// 							}
+	// 						}, 200);
+	// 					}
+	// 				});
+	// 			}}
+	// 		>
+	// 			Delete
+	// 		</SwipeAction>
+	// 	</TrailingActions>
+	// );
 	console.log(media);
 	useEffect(() => {
-		GetMedia().then((res) => {
+		GetStoriesMedia().then((res) => {
 			if (Array.isArray(res)) {
 				setMedia(res);
 			} else {
@@ -169,9 +166,9 @@ export default function ListSwipeableMedia() {
 					{media.length > 0 ? (
 						media.map((mediaMap) => (
 							<SwipeableListItem
-								trailingActions={trailingActions(
-									mediaMap.id
-								)}
+								// trailingActions={trailingActions(
+								// 	mediaMap.id
+								// )}
 								key={mediaMap.id}
 								swipeStartThreshold={30}
 							>
@@ -214,7 +211,6 @@ export default function ListSwipeableMedia() {
 												width={600}
 												height={600}
 												alt={
-													mediaMap.altText ??
 													""
 												}
 											/>
@@ -230,8 +226,7 @@ export default function ListSwipeableMedia() {
 												}
 											>
 												<h3>
-													Titulo:{" "}
-													{mediaMap.altText}
+													{mediaMap.story.title}
 												</h3>
 											</div>
 											<div
@@ -241,22 +236,34 @@ export default function ListSwipeableMedia() {
 											>
 												<p>
 													<span>
-														Contenido
-														asociado:
+														historia
+														asociada:
 													</span>
 												</p>
-
 												<p
 													key={
 														mediaMap
-															.content
+															.story
 															.id
 													}
 												>
 													{
 														mediaMap
-															.content
+															.story
 															.title
+													}{" "}
+												</p>
+												<p
+													key={
+														mediaMap
+															.story
+															.id
+													}
+												>
+													{
+														mediaMap
+															.story
+															.createdAt
 													}{" "}
 												</p>
 											</div>

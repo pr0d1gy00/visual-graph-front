@@ -1,14 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Styles from "./css/formMedia.module.css";
+import Styles from "../formMedia/css/formMedia.module.css";
 import Input from "@/components/inputs/input";
 import Label from "@/components/label/label";
-import { GetContent } from "@/pages/api/content/GetContent";
 import Swal from "sweetalert2";
-import { CreateMedia } from "@/pages/api/media/CreateMedia";
+import { CreateMedia } from "@/pages/api/StoryMedia/CreateMedia";
 import Image from "next/image";
-import { ContentDataInterface } from "../formContent/formContent";
 import { motion } from "motion/react";
+import { GetStories, StoriesInterface } from "@/pages/api/story/GetStories";
 
 const inputs = [
 	{
@@ -28,32 +27,24 @@ const inputs = [
 		],
 	},
 	{
-		label: "Texto alternativo",
-		type: "text",
-		name: "altText",
-		id: "altText",
-	},
-	{
-		label: "Contenido",
+		label: "Historia",
 		type: "select",
-		name: "contentId",
-		id: "contentId",
+		name: "storyId",
+		id: "storyId",
 	},
 ];
 export interface formValueInterface {
 	image: string;
 	type: string;
-	altText: string;
-	contentId: string;
+	storyId: string;
 }
-export default function FormMedia() {
+export default function FormStoryMedia() {
 	const [formValues, setFormValues] = useState<formValueInterface>({
 		image: "",
 		type: "",
-		altText: "",
-		contentId: "",
+		storyId: "",
 	});
-	const [content, setContent] = useState<ContentDataInterface[]>(
+	const [stories, setStories] = useState<StoriesInterface[]>(
 		[]
 	);
 
@@ -66,6 +57,7 @@ export default function FormMedia() {
 			[name]: value,
 		});
 	};
+	console.log(formValues)
 	const handleSubmit = async (
 		e: React.FormEvent<HTMLFormElement>
 	) => {
@@ -91,8 +83,7 @@ export default function FormMedia() {
 				setFormValues({
 					image: "",
 					type: "",
-					altText: "",
-					contentId: "",
+					storyId: "",
 				});
 			} else {
 				Swal.fire({
@@ -115,9 +106,9 @@ export default function FormMedia() {
 	};
 
 	useEffect(() => {
-		GetContent().then((res) => {
+		GetStories().then((res) => {
 			if (Array.isArray(res)) {
-				setContent(res);
+				setStories(res);
 			} else {
 				Swal.fire({
 					icon: "error",
@@ -143,7 +134,7 @@ export default function FormMedia() {
 				transition={{ duration: 0.3, delay: 0.1 }}
 				className={Styles.formMediaText}
 			>
-				Añadele imagenes a tus contenido
+				Añadele imagenes a tus historias
 			</motion.h2>
 			<form
 				action="POST"
@@ -275,7 +266,7 @@ export default function FormMedia() {
 													);
 												}
 										  )
-										: content.map((content) => {
+										: stories.map((content) => {
 												return (
 													<option
 														key={
@@ -331,19 +322,7 @@ export default function FormMedia() {
 				>
 					Enviar
 				</motion.button>
-				{/* <div>
-						{image.map((img, index) => {
-							return (
-								<div key={index} className={Styles.containerImage}>
-									<img
-										src={`${process.env.NEXT_PUBLIC_API_URL}${img.url}`}
-										alt={img.altText || "Imagen"}
-										className={Styles.image}
-									/>
-					</div>
-							);
-						})}
-					</div> */}
+
 			</form>
 		</div>
 	);

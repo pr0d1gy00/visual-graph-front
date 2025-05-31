@@ -1,0 +1,98 @@
+.mediaListContainer {
+	width: 90%;
+	margin-bottom: 3rem;
+	font-family: 'Nexa', sans-serif;
+
+}
+
+.textContent {
+	color: #ffcc01;
+	font-size: 4rem;
+	text-align: center;
+	font-family: 'Nexa', sans-serif;
+
+	font-weight: 700;
+}
+
+.media {
+	display: flex;
+	background-color: #ffffff;
+	width: 100%;
+	min-height: 15rem;
+	max-height: 15rem;
+	gap: 1rem;
+	border-radius: 2rem;
+	padding: 0;
+}
+
+.mediaListDescription {
+	text-align: center;
+	font-size: 1.6rem;
+	margin: .5rem 0 3rem 0;
+	font-weight: 700;
+}
+
+.mediaImageContainer {
+	width: 15rem;
+	height: 15rem;
+	overflow: hidden;
+	object-fit: cover;
+	border-radius: 2rem 0 0 2rem;
+}
+
+.mediaInfoContainer {
+	border-radius: 0rem 2rem 2rem 0;
+	overflow: hidden;
+}
+
+.mediaImageContainer img {
+	width: 15rem;
+	height: 15rem;
+	object-fit: contain;
+	border-radius: 1rem 0 0 1rem;
+}
+
+.mediaInfoContainer h3 {
+	font-size: 2rem;
+	margin: 0.5rem 0;
+	  -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp:1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
+}
+
+.mediaInfoContainer span {
+	font-size: 1.6rem;
+	color: #010100;
+}
+
+.mediaInfoContainer p {
+	font-size: 1.6rem;
+	color: #888888;
+	  -webkit-line-clamp: 1; /* Cambia a 2 o 3 según lo que prefieras */
+  line-clamp:1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  max-width: 100%;
+}
+
+@media (width >=900px) {
+	.mediaListContainer {
+		width: 60%;
+	}
+
+	.media {
+		width: 100%;
+	}
+
+	.textContent {
+		font-size: 4rem;
+	}
+}
