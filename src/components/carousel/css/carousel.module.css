@@ -1,0 +1,192 @@
+.carouselContainer {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 111;
+  overflow: scroll;
+
+}
+
+.carouselImageContainer {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.carouselImageWrapper {
+margin-left: 50%;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 360px;         /* 9:16 ratio */
+  height: 600px;        /* 9:16 ratio */
+  background: #222;
+  border-radius: 2rem;
+  box-shadow: 0 0 32px 0 rgba(0,0,0,0.6);
+}
+.loader {
+  border: 8px solid #222;
+  border-top: 8px solid #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+  margin: auto;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg);}
+  100% { transform: rotate(360deg);}
+}
+.carouselButtonLeft {
+  position: absolute;
+  top: 50%;
+  width: 6rem;
+  height: 6rem;
+  border: none;
+  background: rgba(196, 196, 196, 0.4);
+  color: #fff;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  transition: background 0.2s;
+}
+.logoImage{
+	width:50%;
+	height: 7rem;
+  object-fit: contain;
+
+}
+.carouselThumbnailsHeader{
+	width: 100%;
+	height: 10rem;
+	display: flex;
+	align-items: center;
+}
+.carouselButtonRight {
+  position: absolute;
+  top: 50%;
+  width: 6rem;
+  height: 6rem;
+  border: none;
+  background: rgba(196, 196, 196, 0.4);
+  color: #fff;
+  border-radius: 50%;
+  z-index: 2;
+  display: flex;
+align-items: center;
+  justify-items: center;  transition: background 0.2s;
+}
+.carouselButton:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.iconArrow {
+  width: 5rem;
+  height: 5rem;
+  color: #fff;
+}
+.carouselButtonLeft {
+  left: -10rem;
+}
+
+.carouselButtonRight {
+  right: -10rem;
+}
+.carouselImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* recorta para llenar el área como en historias */
+  border-radius: 2rem;
+  background: #111;
+  display: block;
+}
+.closeButton{
+	width: 5rem;
+	height: 5rem;
+	border: none;
+	background: rgba(196, 196, 196, 0.4);
+	  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.carouselTitle {
+  font-size: 2.5rem;
+  color: #000;
+  font-weight: 600;
+  position: relative;
+	border-bottom: 1px solid #e4e4e4;
+}
+.iconClose{
+	  width: 3rem;
+  height: 3rem;
+  color: #fff;
+}
+
+.carouselDescriptionText {
+  color: #fff;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+.carouselThumbnails {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 30%;
+  left: 0;
+  height: 100vh;
+  overflow-y:scroll ;
+  position: absolute;
+  background-color: #ffffff;
+  padding: 0 1rem;
+}
+.carouselThumbnail{
+	background-color: transparent;
+	border: none;
+	width: 100%;
+	display:flex;
+	align-items: start;
+	border-radius: 1rem;
+	padding: 1rem;
+
+}.thumbnailImage{
+	width: 10rem;
+	border-radius: 1rem;
+}
+.carouselThumbnail:hover{
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.thumbnailInfo{
+	display: flex;
+	flex-direction: column;
+	justify-items: start;
+	margin-left: 1rem;
+	font-size: 1.6rem;
+	gap: 1rem;
+}
+.thumbnailTitle{
+	color: #000;
+	font-weight: 600;
+	font-size: 1.6rem;
+	text-align: start;
+}
+.thumbnailDate{
+	color: #818181;
+	font-size: 1.4rem;
+	text-align: start;
+}

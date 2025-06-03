@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Styles from "./css/sidebar.module.css";
-import VisualGraphLogoHorizontal from "../../../public/visual-graph-horizontal.png";
+import VisualGraphLogoHorizontal from "../../../public/visual-graph-horizontal - Copy.png";
 import ArrowDesing from "../../../public/arrow-visual-graph.png";
 import {FaTimes} from "react-icons/fa"; // Importa el icono de hamburguesa
 import React from 'react';
@@ -10,6 +10,7 @@ import { motion } from 'motion/react';
 type HeaderProps = {
   setIsMobile: React.Dispatch<React.SetStateAction<boolean>>;
   width: number;
+  setShowHistory: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const link = [
@@ -22,7 +23,8 @@ const link = [
 	{ name: "Historia media", url: "/StoryMedia" },
 ];
 
-const Header = ({setIsMobile,width}:HeaderProps) => {
+const Header = ({setIsMobile,width,setShowHistory}:HeaderProps) => {
+
 	return (
 		<motion.header className={Styles.header}
 			initial={{ opacity: 0, y: -50 }}
@@ -65,6 +67,17 @@ const Header = ({setIsMobile,width}:HeaderProps) => {
 								</Link>
 							);
 						})}
+						<button onClick={() => {
+							setShowHistory(true);
+						}
+						} className={Styles.showHistoryButton}>
+							<Image
+										src={ArrowDesing}
+										alt="Arrow"
+										className={Styles.arrow}
+									/>
+							Historia
+						</button>
 					</div>
 				</>
 		</motion.header>
