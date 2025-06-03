@@ -10,7 +10,7 @@
   justify-content: center;
   z-index: 111;
   overflow: scroll;
-
+  font-family: 'Nexa', sans-serif;
 }
 
 .carouselImageContainer {
@@ -139,9 +139,10 @@ align-items: center;
 
 .carouselDescriptionText {
   color: #fff;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-align: center;
   margin-top: 1rem;
+  font-weight: bold;
 }
 .carouselThumbnails {
   display: flex;
