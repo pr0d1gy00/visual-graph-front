@@ -95,10 +95,33 @@ if (loading) {
     </div>
   );
 }
-	if (!selectedImage) {
+	if (media.length === 0) {
 		return (
 			<div className={Styles.carouselContainer}>
-				No hay imágenes para mostrar.
+				<div className={Styles.carouselThumbnailsHeaderNoMedia}>
+					<motion.button
+						className={Styles.closeButton}
+						onClick={() => {
+							setShowHistory(false);
+							setSelectedIndex(0);
+						}}
+						whileHover={{ scale: 1.1 }}
+						whileTap={{ scale: 0.9 }}
+						aria-label="Close carousel"
+						aria-live="polite"
+						aria-atomic="true"
+						aria-controls="carousel-image"
+						aria-describedby="carousel-description"
+					>
+						<FiX
+							width={30}
+							height={30}
+							className={Styles.iconClose}
+						/>
+					</motion.button>
+
+				</div>
+				<p className={Styles.noImageText}>No hay imágenes para mostrar.</p>
 			</div>
 		);
 	}
@@ -113,6 +136,119 @@ if (loading) {
 				stiffness: 60,
 			}}
 		>
+			{media.length === 0 && (
+				<motion.div
+					className={Styles.noMediaMessage}
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: -20 }}
+					transition={{
+						duration: 0.5,
+						type: "spring",
+						stiffness: 60,
+					}}
+				>
+					<motion.div
+					className={Styles.carouselThumbnails}
+					initial={{ opacity: 0, y: 20 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: 20 }}
+					transition={{
+						duration: 0.5,
+						type: "spring",
+						stiffness: 60,
+					}}
+				>
+					<div className={Styles.carouselThumbnailsHeader}>
+						<motion.button
+							className={Styles.closeButton}
+							onClick={() => {
+								setShowHistory(false);
+								setSelectedIndex(0);
+							}}
+							whileHover={{ scale: 1.1 }}
+							whileTap={{ scale: 0.9 }}
+							aria-label="Close carousel"
+							aria-live="polite"
+							aria-atomic="true"
+							aria-controls="carousel-image"
+							aria-describedby="carousel-description"
+
+						>
+							<FiX
+								width={30}
+								height={30}
+								className={Styles.iconClose}
+							/>
+						</motion.button>
+						<Image
+							src={ImageHeaderCarousel}
+							alt="Visual Graph Logo"
+							width={100}
+							height={100}
+							className={Styles.logoImage}
+						/>
+					</div>
+							<motion.h2
+				className={Styles.carouselTitle}
+				initial={{ opacity: 0, y: -20 }}
+				animate={{ opacity: 1, y: 0 }}
+				exit={{ opacity: 0, y: -20 }}
+				transition={{
+					duration: 0.5,
+					type: "spring",
+					stiffness: 60,
+				}}
+			>
+				Todas las historias
+			</motion.h2>
+					{media.map((image, index) => (
+						<motion.button
+							key={image.id}
+							className={`${Styles.carouselThumbnail} ${
+								selectedIndex === index
+									? Styles.selected
+									: ""
+							}`}
+							onClick={() => {
+								setSelectedIndex(index);
+								setSelectedImage(image);
+							}}
+							whileTap={{ scale: 0.9 }}
+							aria-label={`Select image ${index + 1}`}
+							aria-live="polite"
+							aria-atomic="true"
+							aria-controls="carousel-image"
+							aria-describedby="carousel-description"
+						>
+							<Image
+								src={`${process.env.NEXT_PUBLIC_API_URL}${image.url}`}
+								alt={`Thumbnail ${index + 1}`}
+								width={100}
+								height={100}
+								className={Styles.thumbnailImage}
+							/>
+							<div className={Styles.thumbnailInfo}>
+								<p className={Styles.thumbnailTitle}>
+									{image.story.title}
+								</p>
+								<p className={Styles.thumbnailDate}>
+									{new Date(image.story.createdAt).toLocaleDateString(
+										"es-ES",
+										{
+											day: "2-digit",
+											month: "2-digit",
+											year: "numeric",
+										}
+									)}
+								</p>
+							</div>
+						</motion.button>
+					))}
+				</motion.div>
+					<p>No hay imágenes para mostrar.</p>
+				</motion.div>
+			)}
 
 
 			<motion.div
