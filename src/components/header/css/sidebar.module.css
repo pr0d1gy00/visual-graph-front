@@ -36,9 +36,8 @@
 }
 
 .headerImage img {
-	width: 70%;
 	height: 5rem;
-	object-fit: cover;
+	object-fit: contain;
 }
 .headerLinks {
 	display: flex;
@@ -46,6 +45,7 @@
 	margin-left: 1rem;
 	gap: 2rem;
 	margin: 0 auto;
+	align-items: start;
 }
 .headerLinkContainer {
 	display: flex;
@@ -74,18 +74,17 @@
 	background-color: #ffcc01;
 }
 .showHistoryButton{
-	margin-left: 2rem;
 	background-color: transparent;
 	border: none;
 	width: max-content;
 	height: 7rem;
 	display: flex;
-	justify-content: center;
+	align-items: start;
 	align-items: center;
 	font-size: 2rem;
 	font-weight: bold;
-	margin: 0 auto;
 	gap:1rem;
+	height:4rem;
 }
 .showHistoryButton:hover {
 	color: #ffffff;
@@ -130,6 +129,7 @@
 	.headerLinks {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
 		gap: 1rem;
 		margin: 0;
 	}
