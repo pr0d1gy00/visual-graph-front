@@ -22,8 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
       <link rel="icon" href="/public/favicon.ico" type="image/x-icon"/>
-
-
+     
       </head>
       <body className={`${roboto.className} body`}>
       <ClientLayout>

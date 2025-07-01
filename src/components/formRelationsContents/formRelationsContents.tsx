@@ -216,7 +216,7 @@ export default function FormRelationsContents() {
 															content.title
 														}{" "}
 														-{" "}
-														{content.body}
+														{content.body.slice(0,20)}
 													</option>
 												)
 											)}
@@ -236,7 +236,7 @@ export default function FormRelationsContents() {
 															content.title
 														}{" "}
 														-{" "}
-														{content.body}
+														{content.body.slice(0,20)}
 													</option>
 												)
 											)}

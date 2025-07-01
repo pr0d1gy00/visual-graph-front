@@ -27,7 +27,7 @@
 }
 .content{
   width: 100%;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #e3e3e3;
   padding: 1rem 2.5rem;
   display: flex;
@@ -79,7 +79,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  -webkit-line-clamp: 1; 
+  -webkit-line-clamp: 1;
   line-clamp: 1;
   white-space: normal;
   max-width: 100%;

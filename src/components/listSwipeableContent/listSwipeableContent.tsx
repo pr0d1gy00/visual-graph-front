@@ -13,9 +13,9 @@ import { GetContent } from "@/pages/api/content/GetContent";
 import { ContentDataInterface } from "@/components/formContent/formContent";
 import Swal from "sweetalert2";
 import { FaTrash } from "react-icons/fa";
-import { DeleteSection } from "@/pages/api/section/DeleteSection";
 import Image from "next/image";
 import { motion } from "motion/react"
+import { DeleteContent } from "@/pages/api/content/DeleteContent";
 
 
 
@@ -23,7 +23,7 @@ export default function ListSwipeableContent() {
 	const [sections, setSections] = useState<ContentDataInterface[]>([]);
 
 	const handleDelete = async (id: number) => {
-		const response = await DeleteSection(id);
+		const response = await DeleteContent(id);
 		if (response instanceof Response) {
 			if (response.ok) {
 				Swal.fire({

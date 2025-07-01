@@ -1,5 +1,4 @@
 .textHomeContainer{
-	position: absolute;
 	z-index: 11;
 	top:20% ;
 	left: 5%;
@@ -7,8 +6,8 @@
 	font-weight: 700;
 }
 .textHomeContainer h2{
-	font-size: 5rem;
-	color: #ffcc01;
+	font-size: 7rem;
+	color: #ffffff;
 	text-align: center;
 	margin-bottom: 2rem;
 	font-weight: 700;
@@ -16,7 +15,7 @@
 
 }
 .textHomeContainer h3{
-	font-size: 3rem;
+	font-size:5rem;
 	color: #ffffff;
 	text-align: left;
 	margin-bottom: 2rem;

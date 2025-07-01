@@ -63,12 +63,14 @@ export default function ListSwipeable() {
 
 	const trailingActions = (id: number) => (
 		<TrailingActions
+
 		>
 			<FaTrash
 				style={{
 					color: "white",
 					fontSize: "3rem",
 				}}
+			
 			/>
 			<SwipeAction
 				destructive={true}
@@ -130,7 +132,7 @@ export default function ListSwipeable() {
 	}, []);
 
 	return (
-		<>
+		<div className={styles.listSwipeableContainer}>
 			<motion.h2
 				className={styles.textSection}
 				initial={{ opacity: 0, y: -30 }}
@@ -259,6 +261,6 @@ export default function ListSwipeable() {
 					))}
 				</SwipeableList>
 			</div>
-		</>
+		</div>
 	);
 }

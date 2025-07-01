@@ -20,7 +20,7 @@ const TextHome = () => {
 	return (
 		<div className={Styles.textHomeContainer}>
 			<h2>{letters.slice(0,visible)}</h2>
-			<h3>{visible === letters.length ? 'No solo diseñamos, ¡damos vida a tus ideas!' : ''}</h3>
+			<h3>{visible === letters.length ? 'Imagina, sueña y crea!' : ''}</h3>
 
 		</div>
 	)

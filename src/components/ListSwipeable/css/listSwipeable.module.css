@@ -5,12 +5,21 @@
   font-family: 'Nexa', sans-serif;
   font-weight: 700;
 }
+.listSwipeableContainer{
+
+    width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;}
 .sectionListContainer{
   width: 90%;
   flex-direction: column;
   align-items: center;
   margin-bottom: 3rem;
   font-family: 'Nexa', sans-serif;
+  top: 10%;
+  position: relative;
 }
 .sectionListContainer p{
   font-size: 1.6rem;
@@ -26,7 +35,7 @@
 }
 .section{
   width: 100%;
-  background-color: #ffffff;
+  background-color: #fafafa;
   border-bottom: 1px solid #e3e3e3;
   padding: 1rem 2.5rem;
   display: flex;
@@ -35,7 +44,9 @@
     min-height: 15rem;
   max-height: 15rem;
 }
-
+.hero{
+  
+}
 
 .sectionInfoContainer{
   display: flex;

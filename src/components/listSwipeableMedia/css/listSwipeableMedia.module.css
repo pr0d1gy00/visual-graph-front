@@ -16,7 +16,7 @@
 
 .media {
 	display: flex;
-	background-color: #ffffff;
+  background-color: #fafafa;
 	width: 100%;
 	min-height: 15rem;
 	max-height: 15rem;

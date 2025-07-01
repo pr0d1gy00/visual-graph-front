@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Styles from "./css/sidebar.module.css";
-import VisualGraphLogoHorizontal from "../../../public/visual-graph-horizontal - Copy.png";
+import VisualGraphLogoHorizontal from "../../../public/1x/Asset 5.png";
 import ArrowDesing from "../../../public/arrow-visual-graph.png";
 import {FaTimes} from "react-icons/fa"; // Importa el icono de hamburguesa
 import React from 'react';
@@ -37,6 +37,7 @@ const Header = ({setIsMobile,width,setShowHistory}:HeaderProps) => {
 						<Image
 							src={VisualGraphLogoHorizontal}
 							alt="Visual Graph Logo"
+							className={Styles.logoImage}
 						/>
 						{width<600 ? <button title="Close button"className={Styles.headerButton} onClick={() => {
 						setIsMobile(false)
