@@ -7,7 +7,6 @@ export default function Carousel() {
 	const [element,setElement]=useState<unknown[]>([]);
 	const [selectedIndex,setSelectedIndex]=useState(0);
 	const [selectedElement,setSelectedElement]=useState(null);
-
 	const selectNewElement= (index:number,element:unknown[],next=true)=>{
 		const condition = next ? selectedIndex < element.length -1 : selectedIndex > 0;
 
@@ -20,6 +19,7 @@ export default function Carousel() {
 	const next = ()=>{
 		selectNewElement(selectedIndex,element,true)
 	}
+	console.log(setElement,selectedElement,setSelectedElement,previous,next)
 
 	return (
 		<motion.div
@@ -36,7 +36,7 @@ export default function Carousel() {
 			<motion.button></motion.button>
 			<motion.div>
 				<Image
-					src={process.env.NEXT_PUBLIC_API_URL + !element[selectedIndex]}
+					src={`${process.env.NEXT_PUBLIC_API_URL ?? ''}${!element[selectedIndex]}`}
 					alt="Carousel Image"
 					className={Styles.carouselImage}
 					width={500}
